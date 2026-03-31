@@ -1,8 +1,8 @@
 #!/bin/sh
 # ============================================================
-# PRE-COMMIT HOOK — Petshop Service Management
+# PRE-COMMIT HOOK — Generic Git Safety Hook
 # Chạy tự động trước mỗi git commit.
-# Kiểm tra: TypeScript errors, ESLint, forbidden patterns
+# Kiểm tra: TypeScript errors, secrets, .env files
 # ============================================================
 
 echo "🔍 Pre-commit: Đang kiểm tra code..."
@@ -105,6 +105,6 @@ else
   echo ""
   echo "  ${RED}💥 Pre-commit FAILED. Commit bị từ chối.${NC}"
   echo "  ${YELLOW}   Sửa các lỗi trên rồi thử lại.${NC}"
-  echo "  ${YELLOW}   Bỏ qua hook (không khuyến khích): git commit --no-verify${NC}"
+  echo "  ${YELLOW}   [CAUTION] If you must bypass, see: .agent/hooks/README.md${NC}"
   exit 1
 fi

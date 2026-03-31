@@ -1,15 +1,22 @@
 # Install-GitHooks.ps1
 # Cai dat git hooks tu .agent/hooks/ vao .git/hooks/
-# Chay: powershell -ExecutionPolicy Bypass -File "c:\Dev\.agent\hooks\Install-GitHooks.ps1"
+# Chay tu thu muc root cua project:
+#   powershell -ExecutionPolicy Bypass -File ".agent\hooks\Install-GitHooks.ps1"
+# Hoac truyen project path:
+#   .\Install-GitHooks.ps1 -ProjectRoot "C:\path\to\project"
 
-$ProjectRoot = "c:\Dev\Petshop_Service_Management"
-$HooksSource = "c:\Dev\.agent\hooks"
-$HooksDest   = "$ProjectRoot\.git\hooks"
+param (
+    [string]$ProjectRoot = (Get-Location).Path
+)
+
+$HooksSource = Join-Path $PSScriptRoot "."
+$HooksDest   = Join-Path $ProjectRoot ".git\hooks"
 
 Write-Host ""
-Write-Host "🔧 Installing Git Hooks for Petshop..." -ForegroundColor Cyan
-Write-Host "   Source : $HooksSource"
-Write-Host "   Target : $HooksDest"
+Write-Host "🔧 Installing Git Hooks..." -ForegroundColor Cyan
+Write-Host "   Project : $ProjectRoot"
+Write-Host "   Source  : $HooksSource"
+Write-Host "   Target  : $HooksDest"
 Write-Host ""
 
 if (-not (Test-Path "$ProjectRoot\.git")) {
@@ -46,10 +53,10 @@ if ($installed -eq $hooks.Count) {
     Write-Host ""
     Write-Host "Hooks installed:" -ForegroundColor Cyan
     Write-Host "  pre-commit  -> checks secrets, TypeScript errors, .env files before commit"
-    Write-Host "  pre-push    -> checks build, Prisma schema, blocks direct push to main"
+    Write-Host "  pre-push    -> checks build, schema, blocks direct push to main"
     Write-Host ""
     Write-Host "Tips:" -ForegroundColor Yellow
-    Write-Host "  Skip hook once: git commit --no-verify"
+    Write-Host "  Update hooks: re-run this script after editing .agent/hooks/"
     Write-Host "  Update hooks  : re-run this script after editing .agent/hooks/"
 } else {
     Write-Host "WARNING: Only $installed/$($hooks.Count) hooks installed." -ForegroundColor Yellow

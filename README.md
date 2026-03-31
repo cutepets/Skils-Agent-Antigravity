@@ -1,7 +1,9 @@
+<<<<<<< HEAD
 # 🤖 Antigravity Agent Bundle
 
 > A production-grade AI agent configuration bundle for Antigravity IDE.
 > Developed through real-world use on production projects.
+> **Security verified by AgentShield — Grade A (96/100)**
 
 ---
 
@@ -177,3 +179,6 @@ This bundle grew from real production use. PRs welcome for:
 ## 📜 License
 
 MIT — Use freely in personal and commercial projects.
+=======
+# Skils-Agent-Antigravity
+>>>>>>> eaa594384c35a51c3d49b8c192259b1d4d3d5080

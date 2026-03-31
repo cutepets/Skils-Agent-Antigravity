@@ -1,6 +1,6 @@
 #!/bin/sh
 # ============================================================
-# PRE-PUSH HOOK — Petshop Service Management
+# PRE-PUSH HOOK — Generic Git Safety Hook
 # Chạy tự động trước mỗi git push.
 # Kiểm tra: Build pass, không push trực tiếp vào main
 # ============================================================
@@ -100,7 +100,7 @@ if [ "$ARCH_CHANGED" = true ]; then
   echo ""
   echo "  ${YELLOW}📋 Nhắc nhở: Bạn đã sửa file cấu hình kiến trúc quan trọng.${NC}"
   echo "  ${YELLOW}   Nếu đây là thay đổi kiến trúc lớn, hãy thêm ADR vào:${NC}"
-  echo "  ${YELLOW}   Petshop_Service_Management/docs/technical/DECISIONS.md${NC}"
+  echo "  ${YELLOW}   docs/technical/DECISIONS.md (hoặc tương đương trong project của bạn)${NC}"
 fi
 
 # ============================================================
@@ -114,6 +114,6 @@ else
   echo ""
   echo "  ${RED}💥 Pre-push FAILED. Push bị hủy.${NC}"
   echo "  ${YELLOW}   Sửa lỗi rồi thử lại.${NC}"
-  echo "  ${YELLOW}   Bypass (khẩn cấp): git push --no-verify${NC}"
+  echo "  ${YELLOW}   [CAUTION] If you must bypass, see: .agent/hooks/README.md${NC}"
   exit 1
 fi
