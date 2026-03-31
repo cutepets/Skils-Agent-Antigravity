@@ -72,30 +72,83 @@ Verified with [`ecc-agentshield`](https://www.npmjs.com/package/ecc-agentshield)
 
 ## 🧩 Skills (22)
 
-| Skill | Tags | Purpose |
-|-------|------|---------|
-| `search-first` | workflow, safety | Read codebase BEFORE writing code — prevents AI guessing |
-| `verification-loop` | workflow, quality | Post-change regression prevention, systematic checks |
-| `tdd-master-workflow` | testing, workflow | Red-Green-Refactor TDD cycle, test architecture design |
-| `modern-web-architect` | frontend, architecture | React 19, Next.js 15, App Router, state management patterns |
-| `security-scan` | security, ai-safety | AgentShield scan + manual checklist for AI configs |
-| `nestjs-clean-arch` | backend, nestjs | Modules, controllers, DTOs, guards, Prisma integration |
-| `prisma-orm` | backend, database | Schema design, migrations, query optimization, N+1 prevention |
-| `tanstack-query-patterns` | frontend, data-fetching | QueryKey conventions, mutations, optimistic updates, cache |
-| `database-migration` | backend, database | Zero-downtime migrations, rollback strategies, schema design |
-| `deployment-engineer` | devops, cloud | CI/CD pipelines, Docker, GitOps, progressive delivery |
-| `performance-engineer` | performance, monitoring | OpenTelemetry, load testing, Core Web Vitals optimization |
-| `ui-ux-pro-max` | design, frontend | 50 UI styles, 21 palettes, 50 font pairings, premium design |
-| `frontend-design` | design, frontend | Design thinking, component layout, color theory principles |
-| `api-documenter` | backend, docs | OpenAPI 3.1, Swagger UI, SDK generation |
-| `full-stack-scaffold` | architecture, setup | Project scaffolding for Node.js, Python, Rust, Mobile |
-| `incident-responder` | devops, sre | SRE incident command, blameless post-mortems |
-| `connection-health-check` | frontend, backend | FE↔BE connectivity diagnosis before/after edits |
-| `tailwind-patterns` | frontend, css | Tailwind CSS v4, CSS-first config, container queries |
-| `mobile-design` | mobile, design | iOS/Android patterns, touch targets, platform conventions |
-| `v0-prompt-engineer` | design, ai-tools | Use v0.dev as brainstorm tool before coding UI |
-| `i18n-localization` | frontend, i18n | Internationalization, locale files, RTL support |
-| `project-context-template` | setup, onboarding | Bootstrap `.agent/context/` for new projects |
+Skills are organized by **domain**. Each skill folder contains `SKILL.md` + `config.json` (metadata for auto-detection).
+
+> **Find quickly:** `workflow` → safety nets | `backend` → server & DB | `frontend` → UI & data | `devops` → infra | `design` → visual | `setup` → project init
+
+---
+
+### 🔄 Workflow & Safety (Core — always relevant)
+
+| Skill | Priority | Purpose |
+|-------|----------|---------|
+| `search-first` | ⭐⭐⭐⭐⭐ 10 | Read codebase BEFORE writing code — prevents AI guessing |
+| `verification-loop` | ⭐⭐⭐⭐⭐ 9 | Post-change regression prevention, systematic checks |
+| `tdd-master-workflow` | ⭐⭐⭐⭐ 8 | Red-Green-Refactor TDD cycle, test architecture design |
+| `security-scan` | ⭐⭐⭐⭐ 8 | AgentShield scan + manual checklist for AI agent configs |
+
+---
+
+### 🖧 Backend (NestJS · Prisma · PostgreSQL)
+
+| Skill | Priority | Purpose |
+|-------|----------|---------|
+| `nestjs-clean-arch` | ⭐⭐⭐⭐ 8 | Modules, controllers, DTOs, guards, interceptors, Prisma integration |
+| `prisma-orm` | ⭐⭐⭐⭐ 8 | Schema design, migration workflow, N+1 prevention, transactions |
+| `database-migration` | ⭐⭐⭐ 7 | Zero-downtime migrations, rollback strategies, schema safety |
+| `api-documenter` | ⭐⭐⭐ 6 | OpenAPI 3.1, Swagger UI, SDK generation, developer portal |
+| `full-stack-scaffold` | ⭐⭐⭐ 6 | Project scaffolding for Node.js, Python, Rust, Mobile |
+
+> **Adding a backend skill?** Place here, `"tags": ["backend", ...]` in config.json
+
+---
+
+### 🎨 Frontend (React · Vite · TanStack)
+
+| Skill | Priority | Purpose |
+|-------|----------|---------|
+| `modern-web-architect` | ⭐⭐⭐⭐ 8 | React 19, Next.js 15, App Router, state management patterns |
+| `tanstack-query-patterns` | ⭐⭐⭐⭐ 8 | QueryKey conventions, mutations, optimistic updates, cache |
+| `connection-health-check` | ⭐⭐⭐ 6 | FE↔BE connectivity diagnosis before/after danger file edits |
+| `tailwind-patterns` | ⭐⭐⭐ 5 | Tailwind CSS v4, CSS-first config, container queries |
+| `mobile-design` | ⭐⭐⭐ 5 | iOS/Android patterns, touch targets, platform conventions |
+| `i18n-localization` | ⭐⭐ 4 | Internationalization, locale files, RTL support |
+
+> **Adding a frontend skill?** Place here, `"tags": ["frontend", ...]` in config.json
+
+---
+
+### 🎭 Design & UX
+
+| Skill | Priority | Purpose |
+|-------|----------|---------|
+| `ui-ux-pro-max` | ⭐⭐⭐⭐ 7 | 50 UI styles, 21 palettes, 50 font pairings, premium design |
+| `frontend-design` | ⭐⭐⭐⭐ 7 | Design thinking, color theory, typography, UX psychology |
+| `v0-prompt-engineer` | ⭐⭐⭐ 5 | Use v0.dev as brainstorm tool before handing off to agent |
+
+> **Adding a design skill?** Place here, `"tags": ["design", ...]` in config.json
+
+---
+
+### ☁️ DevOps & Reliability
+
+| Skill | Priority | Purpose |
+|-------|----------|---------|
+| `deployment-engineer` | ⭐⭐⭐⭐ 7 | CI/CD pipelines, Docker, Kubernetes, GitOps, progressive delivery |
+| `performance-engineer` | ⭐⭐⭐⭐ 7 | OpenTelemetry, load testing, Core Web Vitals, multi-tier caching |
+| `incident-responder` | ⭐⭐⭐ 6 | SRE incident command, blameless post-mortems, error budget |
+
+> **Adding a devops skill?** Place here, `"tags": ["devops", ...]` in config.json
+
+---
+
+### 🚀 Project Setup & Onboarding
+
+| Skill | Priority | Purpose |
+|-------|----------|---------|
+| `project-context-template` | ⭐⭐ 4 | Bootstrap `.agent/context/` for new projects |
+
+> **Adding a setup skill?** Place here, `"tags": ["setup", ...]` in config.json
 
 ---
 
