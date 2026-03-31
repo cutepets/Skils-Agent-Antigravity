@@ -7,6 +7,34 @@ Toàn bộ lịch sử thay đổi của bundle theo chuẩn [Semantic Versionin
 
 ---
 
+## [v1.5.1] — 2026-03-31 (Patch — Skill Quality)
+
+### 🔧 Improvements
+
+**moleculer-patterns skill enhancements:**
+- Thêm guard clause "Khi nào KHÔNG áp dụng" — ngăn AI over-engineer cho monolith/MVP nhỏ
+- Thêm reconciliation note với `nestjs-clean-arch` — giải thích rõ khi nào dùng domain errors vs HTTP exceptions để tránh advice trái chiều
+- Thêm `Related Skills` cross-reference table — map sang nestjs-clean-arch, fastify-patterns, medusa-commerce, performance-engineer, incident-responder
+- Fix README badge: Skills 23 → 24 (đã bị sai từ v1.5.0)
+
+---
+
+## [v1.5.0] — 2026-03-31
+
+### ✨ New Skill (1)
+- `moleculer-patterns` (priority 7, tags: backend, microservices, architecture) — 7 production patterns đúc kết từ Moleculer framework:
+  - Service Broker / Message Bus pattern
+  - Pluggable Architecture (Strategy Pattern)
+  - Fault Tolerance (Circuit Breaker, Retry, Timeout, Bulkhead)
+  - Context Propagation với AsyncLocalStorage
+  - Observability (Logs + Metrics + Traces)
+  - Centralized Error Hierarchy
+  - Service Mixin (Composition over Inheritance)
+- Mỗi pattern có code NestJS ready-to-use, không cần cài Moleculer
+- Skills count: 22 → 23
+
+---
+
 ## [v1.4.1] — 2026-03-31 (Patch — Critical Bug Fixes)
 
 ### 🐛 Bug Fixes

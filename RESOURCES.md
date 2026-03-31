@@ -24,6 +24,15 @@ Lưu trữ danh sách các repo nguồn để tiện cho việc cập nhật h�
 - **Microsoft Semantic Kernel**: `https://github.com/microsoft/semantic-kernel` (LLM integration SDK)
 - **SuperAGI**: `https://github.com/TransformerOptimus/SuperAGI` (Autonomous AI Agent Framework)
 
+### 🛒 Commerce Frameworks (Studied & Integrated as Skills)
+- **Medusa.js**: `https://github.com/medusajs/medusa` — Module system, Workflow engine, Events → skill `medusa-commerce`
+- **Medusa Docs**: `https://docs.medusajs.com/` — NotebookLM: https://notebooklm.google.com/notebook/49d156d4-415f-4b2c-bc28-c9ea7ecd41b8
+
+### 🔧 Backend Frameworks (Studied & Integrated as Skills)
+- **Moleculer**: `https://github.com/moleculerjs/moleculer` — Microservices patterns → skill `moleculer-patterns`
+- **Fastify**: `https://github.com/fastify/fastify` — High-performance Node.js → skill `fastify-patterns`
+- **NestJS**: `https://github.com/nestjs/nest` — Enterprise Node.js → skill `nestjs-clean-arch`
+
 ### Automation & Workflows
 - **n8n**: `https://github.com/n8n-io/n8n` (Workflow automation tool)
 

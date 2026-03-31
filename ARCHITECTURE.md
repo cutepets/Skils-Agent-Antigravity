@@ -51,17 +51,37 @@ Tự động active dựa trên `trigger` trong YAML frontmatter.
 
 Load theo yêu cầu task. Quan trọng nhất cho Petshop:
 
+### 🎨 Frontend & UI
 | Skill | Dùng khi |
 |-------|---------|
 | `modern-web-architect` | Thiết kế component, React pattern |
 | `frontend-design` | UI/UX decisions |
 | `ui-ux-pro-max` | Thiết kế premium, palette |
+| `tailwind-patterns` | (khi migrate sang Tailwind) |
+| `tanstack-query-patterns` | TanStack Query, cache, mutations |
+
+### 🗃️ Database & Backend
+| Skill | Dùng khi |
+|-------|---------|
 | `database-migration` | Thay đổi Prisma schema |
+| `prisma-orm` | Query optimization, N+1, transactions |
+| `nestjs-clean-arch` | NestJS modules, DI, guards, interceptors |
+| `fastify-patterns` | Fastify v5 plugin system, lifecycle, hooks |
+
+### 🏪 Commerce & Microservices
+| Skill | Gọi khi nào |
+|-------|-------------|
+| `medusa-commerce` | Xây dựng commerce features, hiểu Module system, Workflow engine, Events |
+| `moleculer-patterns` | Thiết kế service architecture, fault tolerance, event-driven patterns |
+
+### ⚙️ DevOps & Quality
+| Skill | Dùng khi |
+|-------|---------|
 | `performance-engineer` | Tối ưu query, bundle size |
-| `tailwind-patterns` | (chưa dùng — khi migrate Tailwind) |
 | `tdd-master-workflow` | Viết test |
 | `deployment-engineer` | Deploy production |
 | `connection-health-check` | Sửa DANGER FILES (vite.config, routes/index) |
+| `security-scan` | Audit security trước khi commit |
 
 ---
 

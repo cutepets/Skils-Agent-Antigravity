@@ -3,10 +3,10 @@
 > A production-grade AI agent configuration bundle for **Antigravity IDE**.
 > Battle-tested through real-world projects. Drop into any new project and start coding immediately.
 
-![Version](https://img.shields.io/badge/version-v1.4.1-orange)
+![Version](https://img.shields.io/badge/version-v1.5.1-orange)
 ![AgentShield Grade A](https://img.shields.io/badge/AgentShield-Grade%20A%20(96%2F100)-brightgreen)
 ![Agents](https://img.shields.io/badge/Agents-22-blue)
-![Skills](https://img.shields.io/badge/Skills-22-blue)
+![Skills](https://img.shields.io/badge/Skills-24-blue)
 ![Workflows](https://img.shields.io/badge/Workflows-28-blue)
 ![Rules](https://img.shields.io/badge/Rules-19-blue)
 
@@ -36,7 +36,7 @@ Verified with [`ecc-agentshield`](https://www.npmjs.com/package/ecc-agentshield)
 | Component | Count | Description |
 |-----------|-------|-------------|
 | 🤖 Agents | **22** | Specialized AI personas for every task |
-| 🧩 Skills | **22** | Deep, reusable knowledge modules |
+| 🧩 Skills | **23** | Deep, reusable knowledge modules |
 | ⚡ Workflows | **28** | Slash-command workflows (`/create`, `/debug`, etc.) |
 | 📜 Rules | **19** | Auto-triggered coding standards |
 | 🪝 Hooks | **4** | AI-triggered safety hooks |
@@ -73,7 +73,7 @@ Verified with [`ecc-agentshield`](https://www.npmjs.com/package/ecc-agentshield)
 
 ---
 
-## 🧩 Skills (22)
+## 🧩 Skills (23)
 
 Skills are organized by **domain**. Each skill folder contains `SKILL.md` + `config.json` (metadata for auto-detection).
 
@@ -98,6 +98,7 @@ Skills are organized by **domain**. Each skill folder contains `SKILL.md` + `con
 |-------|----------|---------|
 | `nestjs-clean-arch` | ⭐⭐⭐⭐ 8 | Modules, controllers, DTOs, guards, interceptors, Prisma integration |
 | `prisma-orm` | ⭐⭐⭐⭐ 8 | Schema design, migration workflow, N+1 prevention, transactions |
+| `moleculer-patterns` | ⭐⭐⭐ 7 | Microservices patterns: Circuit Breaker, Event-driven, Service Broker, Fault Tolerance |
 | `database-migration` | ⭐⭐⭐ 7 | Zero-downtime migrations, rollback strategies, schema safety |
 | `api-documenter` | ⭐⭐⭐ 6 | OpenAPI 3.1, Swagger UI, SDK generation, developer portal |
 | `full-stack-scaffold` | ⭐⭐⭐ 6 | Project scaffolding for Node.js, Python, Rust, Mobile |
@@ -287,7 +288,7 @@ Your Project/
 │   ├── GEMINI.md               ← Agent identity (customize per project)
 │   ├── hooks.json              ← AI-triggered safety hooks
 │   ├── agents/                 ← 22 specialized agents
-│   ├── skills/                 ← 22 skill modules
+│   ├── skills/                 ← 24 skill modules
 │   ├── rules/                  ← 19 auto-triggered rules
 │   ├── workflows/              ← 28 slash-command workflows
 │   └── .shared/                ← 17 shared knowledge modules
@@ -372,7 +373,7 @@ This creates 3 files under `.agent/context/`:
 
 ## ⚡ Context Window Best Practices
 
-With 22 skills + 19 rules + 28 workflows, context can grow large. Follow these practices:
+With 24 skills + 19 rules + 28 workflows, context can grow large. Follow these practices:
 
 ### ✅ Do
 - Let rules auto-trigger naturally — Antigravity only loads rules that **match** the current file, not all rules
