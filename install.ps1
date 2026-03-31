@@ -19,17 +19,17 @@ if (-not (Test-Path $ProjectPath)) {
     exit 1
 }
 
-$bundleDir = Join-Path $PSScriptRoot ".agent"
+$bundleDir = $PSScriptRoot          # Repo root IS the .agent/ bundle
 $targetDir = Join-Path $ProjectPath ".agent"
 
 Write-Host "[1/4] Checking bundle source..." -ForegroundColor Yellow
-if (-not (Test-Path $bundleDir)) {
-    Write-Host "[ERROR] .agent/ folder not found in bundle. Run this script from the bundle root." -ForegroundColor Red
+if (-not (Test-Path (Join-Path $bundleDir "skills"))) {
+    Write-Host "[ERROR] Bundle missing 'skills/' folder. Run this script from the repo root." -ForegroundColor Red
     exit 1
 }
 Write-Host "      OK - Bundle found at: $bundleDir" -ForegroundColor Green
 
-Write-Host "[2/4] Copying .agent/ to project..." -ForegroundColor Yellow
+Write-Host "[2/4] Copying bundle to project as .agent/..." -ForegroundColor Yellow
 if (Test-Path $targetDir) {
     $backup = "$targetDir.backup.$(Get-Date -Format 'yyyyMMdd-HHmm')"
     Write-Host "      Backing up existing .agent/ to $backup" -ForegroundColor Gray

@@ -3,7 +3,7 @@
 > A production-grade AI agent configuration bundle for **Antigravity IDE**.
 > Battle-tested through real-world projects. Drop into any new project and start coding immediately.
 
-![Version](https://img.shields.io/badge/version-v1.4.0-orange)
+![Version](https://img.shields.io/badge/version-v1.4.1-orange)
 ![AgentShield Grade A](https://img.shields.io/badge/AgentShield-Grade%20A%20(96%2F100)-brightgreen)
 ![Agents](https://img.shields.io/badge/Agents-22-blue)
 ![Skills](https://img.shields.io/badge/Skills-22-blue)
@@ -233,17 +233,32 @@ Hooks fire automatically when the AI performs certain actions:
 
 ## 🚀 Quick Install
 
-### Option 1: Clone and copy
+> **Repo structure note:** This repo root **is** the `.agent/` bundle. When you clone it, copy the entire repo folder into your project as `.agent/`.
+
+### Option 1: Clone and copy (manual)
 ```powershell
+# Windows
 git clone https://github.com/cutepets/Skils-Agent-Antigravity.git agent-bundle
-Copy-Item agent-bundle\.agent your-project\.agent -Recurse
+Copy-Item agent-bundle your-project\.agent -Recurse
+```
+```bash
+# Linux / macOS
+git clone https://github.com/cutepets/Skils-Agent-Antigravity.git agent-bundle
+cp -r agent-bundle your-project/.agent
 ```
 
 ### Option 2: Run installer
 ```powershell
+# Windows (PowerShell)
 git clone https://github.com/cutepets/Skils-Agent-Antigravity.git agent-bundle
 cd agent-bundle
 .\install.ps1 -ProjectPath "C:\path\to\your-project"
+```
+```bash
+# Linux / macOS (bash)
+git clone https://github.com/cutepets/Skils-Agent-Antigravity.git agent-bundle
+cd agent-bundle
+chmod +x install.sh && ./install.sh /path/to/your-project
 ```
 
 ### After installing — 3 setup steps:

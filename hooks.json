@@ -10,9 +10,9 @@
           "pattern": "\\.(ts|tsx)$"
         }
       ],
-      "command": "node -e \"const f=process.env.TOOL_INPUT_FILE||''; const cwd=process.cwd(); if(f.includes('apps/frontend')){require('child_process').execSync('cd apps/frontend && npx tsc --noEmit --skipLibCheck 2>&1 | head -15',{stdio:'inherit',cwd:cwd})}\" 2>&1 || true",
+      "command": "node -e \"const f=process.env.TOOL_INPUT_FILE||''; if(!f)process.exit(0); const {execSync,spawnSync}=require('child_process'),path=require('path'),fs=require('fs'); let dir=path.dirname(f); while(dir!==path.parse(dir).root){if(fs.existsSync(path.join(dir,'tsconfig.json'))){const r=spawnSync('npx',['tsc','--noEmit','--skipLibCheck'],{cwd:dir,encoding:'utf8',shell:true});if(r.stdout)process.stdout.write(r.stdout.split('\\n').slice(0,15).join('\\n'));break;}dir=path.dirname(dir);}\" 2>&1 || true",
       "blocking": false,
-      "comment": "Non-blocking TypeScript check. Báo lỗi nhưng không chặn AI."
+      "comment": "Non-blocking TypeScript check. Walks up from edited file to find nearest tsconfig.json — works with any project structure. TOOL_INPUT_FILE set by Antigravity IDE; if missing, hook exits silently."
     },
     {
       "description": "Cảnh báo console.log trong TypeScript files",
@@ -58,9 +58,9 @@
     }
   ],
   "_meta": {
-    "version": "1.1.0",
+    "version": "1.4.0",
     "description": "AI-triggered hooks cho Antigravity IDE. Tự động chạy khi AI thực hiện actions. Generic — works in any project.",
     "inspired_by": "everything-claude-code/hooks",
-    "note": "Copy file này vào .agent/ của project mới. Hooks tự detect project root bằng process.cwd()."
+    "note": "TOOL_INPUT_FILE env var is set by Antigravity IDE to the path of the file being edited. If not set (other IDEs), hooks exit silently — no crash."
   }
 }

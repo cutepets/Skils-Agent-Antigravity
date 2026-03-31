@@ -23,14 +23,14 @@ fi
 
 # Validate bundle source
 echo "[1/4] Checking bundle source..."
-if [ ! -d "$BUNDLE_DIR" ]; then
-  echo "[ERROR] .agent/ folder not found in bundle. Run this script from the bundle root."
+if [ ! -d "$BUNDLE_DIR/skills" ]; then
+  echo "[ERROR] Bundle missing 'skills/' folder. Run this script from the repo root."
   exit 1
 fi
 echo "      OK - Bundle found at: $BUNDLE_DIR"
 
-# Copy .agent/ to project
-echo "[2/4] Copying .agent/ to project..."
+# Copy bundle to project as .agent/
+echo "[2/4] Copying bundle to project as .agent/..."
 if [ -d "$TARGET_DIR" ]; then
   BACKUP="${TARGET_DIR}.backup.$(date +%Y%m%d-%H%M)"
   echo "      Backing up existing .agent/ to $BACKUP"

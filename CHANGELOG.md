@@ -7,6 +7,38 @@ Toàn bộ lịch sử thay đổi của bundle theo chuẩn [Semantic Versionin
 
 ---
 
+## [v1.4.1] — 2026-03-31 (Patch — Critical Bug Fixes)
+
+### 🐛 Bug Fixes
+
+**#1 install.ps1 + install.sh broken path (Critical):**
+- Cả 2 installers dùng `$PSScriptRoot/.agent/` — path không tồn tại vì repo root *chính là* bundle
+- Fix: `bundleDir = $PSScriptRoot` (PS) / `SCRIPT_DIR` (bash) trực tiếp
+- Validate bằng `skills/` subfolder thay vì `.agent/` folder
+
+**#2 README install commands sai:**
+- `Copy-Item agent-bundle\.agent` → path không tồn tại
+- Fix: `Copy-Item agent-bundle your-project\.agent` (copy cả repo thành `.agent/`)
+- Thêm Linux/macOS bash commands vào Quick Install section
+- Thêm note: "Repo root IS the .agent/ bundle"
+
+**#3 TypeScript hook hardcoded path:**
+- Hook có điều kiện `f.includes('apps/frontend')` → silent fail với mọi project khác
+- Fix: walk-up algorithm — từ file đang sửa, tìm ngược lên đến `tsconfig.json` gần nhất
+- Hoạt động với mọi cấu trúc project (monorepo, single app, nested)
+
+**#4 TOOL_INPUT_FILE documentation:**
+- Thêm note vào `hooks.json._meta` giải thích env var này
+- Hook đã có fallback `||''` → exit silently nếu không được set
+
+**#5 hooks.json version drift:**
+- `_meta.version: "1.1.0"` → `"1.4.0"` để đồng bộ với bundle version
+
+### 📋 Fact-check note
+Claude claim "install.sh không tồn tại" — **sai**. File đã được tạo trong v1.4.0 (2268 bytes, có trong git).
+
+---
+
 ## [v1.4.0] — 2026-03-31
 
 ### 🔧 Fixes (addressing 5 flagged risks)
