@@ -1,9 +1,10 @@
 ---
 name: fastify-patterns
 description: >
-  Fastify v5 patterns for high-performance Node.js APIs. Plugin system, Hooks, Decorators, 
+  Fastify v5 patterns for high-performance Node.js APIs. Plugin system, Hooks, Decorators,
   Encapsulation (DAG), JSON Schema validation/serialization, and production-ready patterns.
-  Use when building or reviewing Fastify-based backends.
+  📚 REFERENCE ONLY — dự án hiện tại dùng NestJS. Invoke explicitly khi cần học
+  Fastify patterns hoặc migrate. Không tự động apply cho NestJS codebase.
 ---
 
 # Fastify Patterns — Production Guide

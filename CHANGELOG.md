@@ -7,6 +7,43 @@ Toàn bộ lịch sử thay đổi của bundle theo chuẩn [Semantic Versionin
 
 ---
 
+## [v1.5.2] — 2026-03-31 (Patch — Skills Audit & Security Scan)
+
+### 🔒 Security
+- Ran `npx ecc-agentshield scan --path .agent` — **Grade: A (95/100)**
+- 5 MEDIUM findings, all confirmed false positives (file path example in `planner.md` flagged as base64; 4 large agents flagged for size)
+- No critical or high findings
+
+### 🧹 Skills Audit & Cleanup
+**Deleted (junk/duplicates):**
+- ~~`deployment-engineer`~~ — broken skeleton (no scripts, no content)
+- ~~`tdd-master-workflow`~~ — duplicate of `/tdd` workflow
+
+**Fixed descriptions (35 skills total, all verified callable):**
+- `fastify-patterns` → 📚 REFERENCE ONLY (project uses NestJS)
+- `moleculer-patterns` → 📚 REFERENCE ONLY (project uses NestJS)
+- `mobile-design` → ⚠️ EXPLICIT INVOKE ONLY (web-only project)
+- `medusa-commerce` → ⚠️ EXPLICIT INVOKE ONLY (not a Medusa project)
+- `typescript-ddd` → ⚠️ LARGE SKILL (54KB) — lazy-load annotation added
+- `modern-web-architect` → UI section delegates to `frontend-design`
+
+**Security routing fix:**
+- `security-review` output renamed: `security_report.md` → `app_security_report.md` (prevents collision with `security-scan`)
+- Both skills now have **🔀 ROUTING NOTE** for clear disambiguation
+
+**Glassmorphism reconciliation:**
+- `liquid-glass-design` ↔ `frontend-design` conflict resolved — glassmorphism allowed for premium/explicit use cases
+
+### 🤖 Agents
+- **Fixed:** `project-planner.md` missing `name:` field (was uncallable)
+- **Count:** 22 → 26 (added: `architect`, `planner`, `project-planner`, `build-error-resolver`, `ddd-reviewer`)
+
+### 📊 Stats
+- Skills: 32 → **35** (net +3: removed 2 junk, verified 35 callable)
+- Agents: 22 → **26**
+
+---
+
 ## [v1.5.1] — 2026-03-31 (Patch — Skill Quality)
 
 ### 🔧 Improvements

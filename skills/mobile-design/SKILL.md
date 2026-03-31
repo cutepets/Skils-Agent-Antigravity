@@ -1,6 +1,11 @@
 ---
 name: mobile-design
-description: Mobile-first design thinking and decision-making for iOS and Android apps. Touch interaction, performance patterns, platform conventions. Teaches principles, not fixed values. Use when building React Native, Flutter, or native mobile apps.
+description: >
+  Mobile-first design thinking and decision-making for iOS and Android apps.
+  Touch interaction, performance patterns, platform conventions.
+  ⚠️ EXPLICIT INVOKE ONLY — dự án hiện tại là web desktop app (Vite+React, không có mobile).
+  Chỉ invoke khi user explicitly yêu cầu React Native, Flutter, iOS, hoặc Android work.
+  Teaches principles, not fixed values.
 allowed-tools: Read, Glob, Grep, Bash
 ---
 

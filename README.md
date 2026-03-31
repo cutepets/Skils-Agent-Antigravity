@@ -3,10 +3,10 @@
 > A production-grade AI agent configuration bundle for **Antigravity IDE**.
 > Battle-tested through real-world projects. Drop into any new project and start coding immediately.
 
-![Version](https://img.shields.io/badge/version-v1.5.1-orange)
-![AgentShield Grade A](https://img.shields.io/badge/AgentShield-Grade%20A%20(96%2F100)-brightgreen)
-![Agents](https://img.shields.io/badge/Agents-22-blue)
-![Skills](https://img.shields.io/badge/Skills-25-blue)
+![Version](https://img.shields.io/badge/version-v1.5.2-orange)
+![AgentShield Grade A](https://img.shields.io/badge/AgentShield-Grade%20A%20(95%2F100)-brightgreen)
+![Agents](https://img.shields.io/badge/Agents-26-blue)
+![Skills](https://img.shields.io/badge/Skills-35-blue)
 ![Workflows](https://img.shields.io/badge/Workflows-28-blue)
 ![Rules](https://img.shields.io/badge/Rules-19-blue)
 
@@ -20,12 +20,14 @@ Verified with [`ecc-agentshield`](https://www.npmjs.com/package/ecc-agentshield)
 
 | Category | Score |
 |----------|-------|
-| 🔑 Secrets | 100/100 |
+| 🔑 Secrets | 95/100 |
 | 🔐 Permissions | 100/100 |
 | 🪝 Hooks | 100/100 |
 | 🔌 MCP Servers | 100/100 |
 | 🤖 Agents | 80/100 |
-| **Overall Grade** | **A (96/100)** |
+| **Overall Grade** | **A (95/100)** |
+
+> **Note:** 5 MEDIUM findings — all false positives. Agents score 80/100 due to large file sizes (orchestrator, frontend-specialist). Secrets 95/100 due to a file path example flagged as potential base64 in `planner.md` (confirmed safe).
 
 > Run your own scan: `npx -y ecc-agentshield scan --path .agent --format markdown`
 
@@ -35,8 +37,8 @@ Verified with [`ecc-agentshield`](https://www.npmjs.com/package/ecc-agentshield)
 
 | Component | Count | Description |
 |-----------|-------|-------------|
-| 🤖 Agents | **22** | Specialized AI personas for every task |
-| 🧩 Skills | **25** | Deep, reusable knowledge modules |
+| 🤖 Agents | **26** | Specialized AI personas for every task |
+| 🧩 Skills | **35** | Deep, reusable knowledge modules |
 | ⚡ Workflows | **28** | Slash-command workflows (`/create`, `/debug`, etc.) |
 | 📜 Rules | **19** | Auto-triggered coding standards |
 | 🪝 Hooks | **4** | AI-triggered safety hooks |
@@ -44,16 +46,21 @@ Verified with [`ecc-agentshield`](https://www.npmjs.com/package/ecc-agentshield)
 
 ---
 
-## 🤖 Agents (22)
+## 🤖 Agents (26)
 
 | Agent | Role |
 |-------|------|
 | `orchestrator` | Master coordinator — Wave-based multi-agent execution with approval gates |
+| `architect` | Senior system architect — ADR decisions, tech stack selection, trade-off analysis |
+| `planner` | Expert planning specialist — phased implementation plans, read-only |
+| `project-planner` | Senior Technical Product Architect — bridges strategy with execution |
 | `debugger` | Systematic root cause analysis & bug hunting |
+| `build-error-resolver` | TypeScript/build/lint error resolver — fast diagnosis & minimal fix |
 | `frontend-specialist` | React, Next.js, CSS, UI components, animations |
 | `backend-specialist` | Node.js, Express, REST API, services |
 | `database-architect` | Schema design, Prisma/SQL, migrations, optimization |
 | `database-reviewer` | Query review, N+1 detection, migration safety (model: haiku) |
+| `ddd-reviewer` | DDD/Hexagonal Architecture reviewer — domain purity, aggregate design |
 | `typescript-reviewer` | TypeScript type safety, React patterns review (model: haiku) |
 | `devops-engineer` | CI/CD, Docker, Kubernetes, deployment pipelines |
 | `mobile-developer` | React Native, Flutter, Expo, mobile patterns |
@@ -65,7 +72,6 @@ Verified with [`ecc-agentshield`](https://www.npmjs.com/package/ecc-agentshield)
 | `codebase-expert` | Impact analysis, refactoring, legacy code archaeology |
 | `explorer-agent` | Codebase discovery, research, unfamiliar repo navigation |
 | `quality-inspector` | Pre-deploy gate — verifies all checklist items |
-| `project-planner` | Task breakdown, milestones, estimation |
 | `product-owner` | Requirements, user stories, acceptance criteria |
 | `product-manager` | Roadmap, prioritization, stakeholder communication |
 | `documentation-writer` | README, API docs, changelogs, ADRs |
@@ -73,7 +79,7 @@ Verified with [`ecc-agentshield`](https://www.npmjs.com/package/ecc-agentshield)
 
 ---
 
-## 🧩 Skills (25)
+## 🧩 Skills (35)
 
 Skills are organized by **domain**. Each skill folder contains `SKILL.md` + `config.json` (metadata for auto-detection).
 
@@ -87,8 +93,13 @@ Skills are organized by **domain**. Each skill folder contains `SKILL.md` + `con
 |-------|----------|---------|
 | `search-first` | ⭐⭐⭐⭐⭐ 10 | Read codebase BEFORE writing code — prevents AI guessing |
 | `verification-loop` | ⭐⭐⭐⭐⭐ 9 | Post-change regression prevention, systematic checks |
-| `tdd-master-workflow` | ⭐⭐⭐⭐ 8 | Red-Green-Refactor TDD cycle, test architecture design |
-| `security-scan` | ⭐⭐⭐⭐ 8 | AgentShield scan + manual checklist for AI agent configs |
+| `smart-commit` | ⭐⭐⭐⭐⭐ 9 | Conventional commits với proper scope — LUÔN dùng khi commit |
+| `code-review` | ⭐⭐⭐⭐ 8 | Sentry-style PR review: security, perf, design, test coverage |
+| `find-bugs` | ⭐⭐⭐⭐ 8 | Deep bug hunt trong branch changes: security checklist + output report |
+| `security-review` | ⭐⭐⭐⭐ 8 | App code security: NestJS + React — output: `app_security_report.md` |
+| `security-scan` | ⭐⭐⭐⭐ 8 | Agent config security: AgentShield scan + manual checklist |
+| `autonomous-loops` | ⭐⭐⭐ 7 | Multi-agent DAG pipelines, batch processing, sequential/parallel loops |
+| `context-budget` | ⭐⭐⭐ 6 | Audit context window bloat — use when AI output quality degrades |
 
 ---
 
@@ -98,6 +109,7 @@ Skills are organized by **domain**. Each skill folder contains `SKILL.md` + `con
 |-------|----------|---------|
 | `nestjs-clean-arch` | ⭐⭐⭐⭐ 8 | Modules, controllers, DTOs, guards, interceptors, Prisma integration |
 | `prisma-orm` | ⭐⭐⭐⭐ 8 | Schema design, migration workflow, N+1 prevention, transactions |
+| `postgres-best-practices` | ⭐⭐⭐⭐ 8 | PostgreSQL + Prisma perf: indexes, pagination, transactions, RLS |
 | `fastify-patterns` | ⭐⭐⭐⭐ 8 | Fastify v5 plugins, hooks, decorators, high-performance Node.js APIs |
 | `moleculer-patterns` | ⭐⭐⭐ 7 | Microservices patterns: Circuit Breaker, Event-driven, Service Broker, Fault Tolerance |
 | `medusa-commerce` | ⭐⭐⭐ 7 | Medusa.js modular commerce, durable workflows, headless architecture |
@@ -113,6 +125,8 @@ Skills are organized by **domain**. Each skill folder contains `SKILL.md` + `con
 
 | Skill | Priority | Purpose |
 |-------|----------|---------|
+| `react-best-practices` | ⭐⭐⭐⭐ 8 | 67 Vercel rules: waterfall elimination, bundle optimization, re-render |
+| `react-composition-patterns` | ⭐⭐⭐⭐ 8 | Compound components, lift state, avoid boolean prop explosion |
 | `modern-web-architect` | ⭐⭐⭐⭐ 8 | React 19, Next.js 15, App Router, state management patterns |
 | `tanstack-query-patterns` | ⭐⭐⭐⭐ 8 | QueryKey conventions, mutations, optimistic updates, cache |
 | `connection-health-check` | ⭐⭐⭐ 6 | FE↔BE connectivity diagnosis before/after danger file edits |
@@ -140,7 +154,6 @@ Skills are organized by **domain**. Each skill folder contains `SKILL.md` + `con
 
 | Skill | Priority | Purpose |
 |-------|----------|---------|
-| `deployment-engineer` | ⭐⭐⭐⭐ 7 | CI/CD pipelines, Docker, Kubernetes, GitOps, progressive delivery |
 | `performance-engineer` | ⭐⭐⭐⭐ 7 | OpenTelemetry, load testing, Core Web Vitals, multi-tier caching |
 | `incident-responder` | ⭐⭐⭐ 6 | SRE incident command, blameless post-mortems, error budget |
 
@@ -289,8 +302,8 @@ Your Project/
 ├── .agent/                     ← This bundle (generic, from GitHub)
 │   ├── GEMINI.md               ← Agent identity (customize per project)
 │   ├── hooks.json              ← AI-triggered safety hooks
-│   ├── agents/                 ← 22 specialized agents
-│   ├── skills/                 ← 24 skill modules
+│   ├── agents/                 ← 26 specialized agents
+│   ├── skills/                 ← 35 skill modules
 │   ├── rules/                  ← 19 auto-triggered rules
 │   ├── workflows/              ← 28 slash-command workflows
 │   └── .shared/                ← 17 shared knowledge modules
@@ -375,7 +388,7 @@ This creates 3 files under `.agent/context/`:
 
 ## ⚡ Context Window Best Practices
 
-With 24 skills + 19 rules + 28 workflows, context can grow large. Follow these practices:
+With 35 skills + 19 rules + 28 workflows, context can grow large. Follow these practices:
 
 ### ✅ Do
 - Let rules auto-trigger naturally — Antigravity only loads rules that **match** the current file, not all rules

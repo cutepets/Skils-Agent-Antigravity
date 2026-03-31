@@ -1,7 +1,0 @@
-{
-  "name": "tdd-master-workflow",
-  "description": "Strict Red-Green-Refactor TDD cycle with test architecture design and multi-agent coordination",
-  "tags": ["testing", "workflow", "quality"],
-  "trigger_keywords": ["tdd", "test driven", "write test", "unit test", "red green refactor"],
-  "priority": 8
-}

@@ -5,6 +5,8 @@ description: >
   Use when building e-commerce solutions, understanding Medusa's module system,
   workflows, data models, events, or integrating Medusa into existing systems.
   Also use as reference for headless commerce architecture patterns.
+  ⚠️ EXPLICIT INVOKE ONLY — dự án hiện tại là NestJS/Express app, không phải Medusa.
+  Invoke explicitly khi cần architect commerce features hoặc study Medusa patterns.
 ---
 
 # Medusa.js — Nền tảng Commerce Mô-đun

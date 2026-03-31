@@ -4,6 +4,8 @@ description: >
   Microservices design patterns từ Moleculer framework (moleculerjs/moleculer).
   Dùng khi thiết kế service architecture, implement fault tolerance, event-driven
   communication, hoặc cần reference production-grade Node.js patterns.
+  📚 REFERENCE ONLY — dự án dùng NestJS. Học patterns từ đây và áp dụng vào NestJS,
+  không dùng Moleculer trực tiếp. Invoke explicitly khi cần pattern reference.
 ---
 
 # Moleculer Patterns — Production Microservices Reference

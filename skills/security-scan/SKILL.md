@@ -10,6 +10,10 @@ description: >
 
 # Security Scan — Petshop AI Agent Configuration
 
+> **🔀 ROUTING NOTE:**
+> - **Skill này** = Audit *AI agent configuration* (.agent/, hooks.json, GEMINI.md, rules/)
+> - **`security-review` skill** = Review *application source code* (NestJS, React, Prisma)
+
 Audit toàn bộ cấu hình AI agent trong `.agent/` để phát hiện lỗ hổng bảo mật.
 
 ## Phạm Vi Scan
