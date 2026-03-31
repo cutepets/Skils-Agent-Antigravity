@@ -3,11 +3,14 @@
 > A production-grade AI agent configuration bundle for **Antigravity IDE**.
 > Battle-tested through real-world projects. Drop into any new project and start coding immediately.
 
+![Version](https://img.shields.io/badge/version-v1.3.0-orange)
 ![AgentShield Grade A](https://img.shields.io/badge/AgentShield-Grade%20A%20(96%2F100)-brightgreen)
 ![Agents](https://img.shields.io/badge/Agents-22-blue)
 ![Skills](https://img.shields.io/badge/Skills-22-blue)
 ![Workflows](https://img.shields.io/badge/Workflows-28-blue)
 ![Rules](https://img.shields.io/badge/Rules-19-blue)
+
+> 📋 [CHANGELOG](./CHANGELOG.md) — xem lịch sử cập nhật
 
 ---
 
