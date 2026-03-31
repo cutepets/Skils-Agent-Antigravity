@@ -1,0 +1,20 @@
+# Antigravity Agent Bundle — .gitignore
+
+# Project-specific files (NOT part of the generic bundle)
+START_HERE.md
+GEMINI.md
+context/
+
+# Security outputs
+security-scan-report.md
+
+# Error logs (project-specific)
+ERRORS.md
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Editor
+.vscode/settings.json
+*.local

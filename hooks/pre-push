@@ -1,0 +1,119 @@
+#!/bin/sh
+# ============================================================
+# PRE-PUSH HOOK — Petshop Service Management
+# Chạy tự động trước mỗi git push.
+# Kiểm tra: Build pass, không push trực tiếp vào main
+# ============================================================
+
+echo "🚀 Pre-push: Đang kiểm tra trước khi push..."
+
+RED='\033[0;31m'
+YELLOW='\033[1;33m'
+GREEN='\033[0;32m'
+NC='\033[0m'
+
+PASS=true
+
+# Đọc branch hiện tại
+CURRENT_BRANCH=$(git rev-parse --abbrev-ref HEAD)
+
+# ============================================================
+# 1. NGĂN PUSH TRỰC TIẾP VÀO MAIN/MASTER
+# ============================================================
+echo "  🌿 Kiểm tra branch..."
+
+if [ "$CURRENT_BRANCH" = "main" ] || [ "$CURRENT_BRANCH" = "master" ]; then
+  echo "  ${RED}❌ KHÔNG được push trực tiếp vào $CURRENT_BRANCH!${NC}"
+  echo "  ${YELLOW}   Hãy tạo branch mới: git checkout -b feature/ten-tinh-nang${NC}"
+  echo "  ${YELLOW}   Rồi tạo Pull Request để merge vào main${NC}"
+  exit 1
+fi
+
+echo "  ${GREEN}✅ Branch: $CURRENT_BRANCH${NC}"
+
+# ============================================================
+# 2. KIỂM TRA BACKEND BUILD
+# ============================================================
+echo "  🔨 Kiểm tra backend build..."
+
+if [ -d "apps/backend" ]; then
+  cd apps/backend
+  npx tsc --noEmit --skipLibCheck 2>&1 | tail -5
+  BUILD_EXIT=$?
+  cd ../..
+
+  if [ $BUILD_EXIT -ne 0 ]; then
+    echo "  ${RED}❌ Backend TypeScript build FAILED!${NC}"
+    PASS=false
+  else
+    echo "  ${GREEN}✅ Backend build OK${NC}"
+  fi
+fi
+
+# ============================================================
+# 3. KIỂM TRA FRONTEND BUILD
+# ============================================================
+echo "  🎨 Kiểm tra frontend build..."
+
+if [ -d "apps/frontend" ]; then
+  cd apps/frontend
+  npx tsc --noEmit --skipLibCheck 2>&1 | tail -5
+  BUILD_EXIT=$?
+  cd ../..
+
+  if [ $BUILD_EXIT -ne 0 ]; then
+    echo "  ${RED}❌ Frontend TypeScript build FAILED!${NC}"
+    PASS=false
+  else
+    echo "  ${GREEN}✅ Frontend build OK${NC}"
+  fi
+fi
+
+# ============================================================
+# 4. KIỂM TRA PRISMA SCHEMA HỢP LỆ
+# ============================================================
+echo "  🗄️  Kiểm tra Prisma schema..."
+
+if [ -f "apps/backend/prisma/schema.prisma" ]; then
+  cd apps/backend
+  npx prisma validate 2>&1 | tail -3
+  PRISMA_EXIT=$?
+  cd ../..
+
+  if [ $PRISMA_EXIT -ne 0 ]; then
+    echo "  ${RED}❌ Prisma schema không hợp lệ!${NC}"
+    PASS=false
+  else
+    echo "  ${GREEN}✅ Prisma schema OK${NC}"
+  fi
+fi
+
+# ============================================================
+# 5. NHẮC NHỞ CẬP NHẬT DECISIONS.MD NẾU CÓ THAY ĐỔI LỚN
+# ============================================================
+CHANGED_FILES=$(git diff --name-only origin/$(git rev-parse --abbrev-ref HEAD) HEAD 2>/dev/null || git diff --name-only HEAD~1 HEAD 2>/dev/null)
+
+ARCH_CHANGED=false
+echo "$CHANGED_FILES" | grep -E "schema\.prisma|package\.json|vite\.config|tsconfig" | grep -q . && ARCH_CHANGED=true
+
+if [ "$ARCH_CHANGED" = true ]; then
+  echo ""
+  echo "  ${YELLOW}📋 Nhắc nhở: Bạn đã sửa file cấu hình kiến trúc quan trọng.${NC}"
+  echo "  ${YELLOW}   Nếu đây là thay đổi kiến trúc lớn, hãy thêm ADR vào:${NC}"
+  echo "  ${YELLOW}   Petshop_Service_Management/docs/technical/DECISIONS.md${NC}"
+fi
+
+# ============================================================
+# KẾT QUẢ
+# ============================================================
+if [ "$PASS" = true ]; then
+  echo ""
+  echo "  ${GREEN}✅ Pre-push passed! Đang push lên remote...${NC}"
+  exit 0
+else
+  echo ""
+  echo "  ${RED}💥 Pre-push FAILED. Push bị hủy.${NC}"
+  echo "  ${YELLOW}   Sửa lỗi rồi thử lại.${NC}"
+  echo "  ${YELLOW}   Bypass (khẩn cấp): git push --no-verify${NC}"
+  exit 1
+fi

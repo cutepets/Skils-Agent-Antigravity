@@ -1,0 +1,66 @@
+{
+  "hooks": [
+    {
+      "description": "TypeScript check sau khi AI edit file .ts/.tsx",
+      "event": "PostToolUse",
+      "matcher": "tool_name == \"create_file\" || tool_name == \"edit_file\" || tool_name == \"replace_file_content\" || tool_name == \"multi_replace_file_content\"",
+      "conditions": [
+        {
+          "field": "tool_input.target_file",
+          "pattern": "\\.(ts|tsx)$"
+        }
+      ],
+      "command": "node -e \"const f=process.env.TOOL_INPUT_FILE||''; const cwd=process.cwd(); if(f.includes('apps/frontend')){require('child_process').execSync('cd apps/frontend && npx tsc --noEmit --skipLibCheck 2>&1 | head -15',{stdio:'inherit',cwd:cwd})}\" 2>&1 || true",
+      "blocking": false,
+      "comment": "Non-blocking TypeScript check. Báo lỗi nhưng không chặn AI."
+    },
+    {
+      "description": "Cảnh báo console.log trong TypeScript files",
+      "event": "PostToolUse",
+      "matcher": "tool_name == \"create_file\" || tool_name == \"edit_file\" || tool_name == \"replace_file_content\"",
+      "conditions": [
+        {
+          "field": "tool_input.target_file",
+          "pattern": "\\.(ts|tsx|js|jsx)$"
+        }
+      ],
+      "command": "node -e \"const {execSync}=require('child_process');const f=process.env.TOOL_INPUT_FILE||'';try{const r=execSync('grep -n \"console\\.log\" \"'+f+'\" 2>/dev/null').toString();if(r.trim())process.stderr.write('[⚠️  Hook] console.log detected in '+f+'\\n'+r+'Remove before commit!\\n');}catch(e){}\"",
+      "blocking": false,
+      "comment": "Cảnh báo console.log, non-blocking"
+    },
+    {
+      "description": "Chặn AI chạy lệnh nguy hiểm với database",
+      "event": "PreToolUse",
+      "matcher": "tool_name == \"run_command\"",
+      "conditions": [
+        {
+          "field": "tool_input.command_line",
+          "pattern": "prisma db push --force|DROP TABLE|DROP DATABASE|db:reset --force|prisma migrate reset --force"
+        }
+      ],
+      "command": "echo '[🚫 Hook] BLOCKED: Dangerous DB command requires explicit user confirmation!' >&2 && exit 2",
+      "blocking": true,
+      "comment": "Blocking hook — chặn lệnh reset/drop DB không có xác nhận"
+    },
+    {
+      "description": "Cảnh báo khi AI đọc file .env thật",
+      "event": "PreToolUse",
+      "matcher": "tool_name == \"view_file\"",
+      "conditions": [
+        {
+          "field": "tool_input.absolute_path",
+          "pattern": "\\.env$"
+        }
+      ],
+      "command": "echo '[🔐 Hook] WARNING: Reading .env file. Ensure no secrets are shared in conversation!' >&2",
+      "blocking": false,
+      "comment": "Non-blocking warning khi đọc .env"
+    }
+  ],
+  "_meta": {
+    "version": "1.1.0",
+    "description": "AI-triggered hooks cho Antigravity IDE. Tự động chạy khi AI thực hiện actions. Generic — works in any project.",
+    "inspired_by": "everything-claude-code/hooks",
+    "note": "Copy file này vào .agent/ của project mới. Hooks tự detect project root bằng process.cwd()."
+  }
+}
