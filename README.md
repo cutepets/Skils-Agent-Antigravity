@@ -5,7 +5,7 @@
 
 ![AgentShield Grade A](https://img.shields.io/badge/AgentShield-Grade%20A%20(96%2F100)-brightgreen)
 ![Agents](https://img.shields.io/badge/Agents-22-blue)
-![Skills](https://img.shields.io/badge/Skills-19-blue)
+![Skills](https://img.shields.io/badge/Skills-22-blue)
 ![Workflows](https://img.shields.io/badge/Workflows-28-blue)
 ![Rules](https://img.shields.io/badge/Rules-19-blue)
 
@@ -33,7 +33,7 @@ Verified with [`ecc-agentshield`](https://www.npmjs.com/package/ecc-agentshield)
 | Component | Count | Description |
 |-----------|-------|-------------|
 | 🤖 Agents | **22** | Specialized AI personas for every task |
-| 🧩 Skills | **19** | Deep, reusable knowledge modules |
+| 🧩 Skills | **22** | Deep, reusable knowledge modules |
 | ⚡ Workflows | **28** | Slash-command workflows (`/create`, `/debug`, etc.) |
 | 📜 Rules | **19** | Auto-triggered coding standards |
 | 🪝 Hooks | **4** | AI-triggered safety hooks |
@@ -70,29 +70,32 @@ Verified with [`ecc-agentshield`](https://www.npmjs.com/package/ecc-agentshield)
 
 ---
 
-## 🧩 Skills (19)
+## 🧩 Skills (22)
 
-| Skill | Purpose |
-|-------|---------|
-| `tdd-master-workflow` | Red-Green-Refactor TDD cycle, test architecture design |
-| `verification-loop` | Post-change regression prevention, systematic checks |
-| `search-first` | Read codebase BEFORE writing code — prevents AI guessing |
-| `ui-ux-pro-max` | 50 UI styles, 21 palettes, 50 font pairings, premium design |
-| `frontend-design` | Design thinking, component layout, color theory principles |
-| `mobile-design` | iOS/Android patterns, touch targets, platform conventions |
-| `modern-web-architect` | React 19, Next.js 15, App Router, state management patterns |
-| `tailwind-patterns` | Tailwind CSS v4, CSS-first config, container queries |
-| `database-migration` | Zero-downtime migrations, rollback strategies, schema design |
-| `full-stack-scaffold` | Project scaffolding for Node.js, Python, Rust, Mobile |
-| `deployment-engineer` | CI/CD pipelines, Docker, GitOps, progressive delivery |
-| `performance-engineer` | OpenTelemetry, load testing, Core Web Vitals optimization |
-| `incident-responder` | SRE incident command, blameless post-mortems |
-| `api-documenter` | OpenAPI 3.1, Swagger UI, SDK generation |
-| `security-scan` | AgentShield scan + manual checklist for AI configs |
-| `connection-health-check` | FE↔BE connectivity diagnosis before/after edits |
-| `i18n-localization` | Internationalization, locale files, RTL support |
-| `v0-prompt-engineer` | Use v0.dev as brainstorm tool before coding UI |
-| `project-context-template` | Bootstrap `.agent/context/` for new projects |
+| Skill | Tags | Purpose |
+|-------|------|---------|
+| `search-first` | workflow, safety | Read codebase BEFORE writing code — prevents AI guessing |
+| `verification-loop` | workflow, quality | Post-change regression prevention, systematic checks |
+| `tdd-master-workflow` | testing, workflow | Red-Green-Refactor TDD cycle, test architecture design |
+| `modern-web-architect` | frontend, architecture | React 19, Next.js 15, App Router, state management patterns |
+| `security-scan` | security, ai-safety | AgentShield scan + manual checklist for AI configs |
+| `nestjs-clean-arch` | backend, nestjs | Modules, controllers, DTOs, guards, Prisma integration |
+| `prisma-orm` | backend, database | Schema design, migrations, query optimization, N+1 prevention |
+| `tanstack-query-patterns` | frontend, data-fetching | QueryKey conventions, mutations, optimistic updates, cache |
+| `database-migration` | backend, database | Zero-downtime migrations, rollback strategies, schema design |
+| `deployment-engineer` | devops, cloud | CI/CD pipelines, Docker, GitOps, progressive delivery |
+| `performance-engineer` | performance, monitoring | OpenTelemetry, load testing, Core Web Vitals optimization |
+| `ui-ux-pro-max` | design, frontend | 50 UI styles, 21 palettes, 50 font pairings, premium design |
+| `frontend-design` | design, frontend | Design thinking, component layout, color theory principles |
+| `api-documenter` | backend, docs | OpenAPI 3.1, Swagger UI, SDK generation |
+| `full-stack-scaffold` | architecture, setup | Project scaffolding for Node.js, Python, Rust, Mobile |
+| `incident-responder` | devops, sre | SRE incident command, blameless post-mortems |
+| `connection-health-check` | frontend, backend | FE↔BE connectivity diagnosis before/after edits |
+| `tailwind-patterns` | frontend, css | Tailwind CSS v4, CSS-first config, container queries |
+| `mobile-design` | mobile, design | iOS/Android patterns, touch targets, platform conventions |
+| `v0-prompt-engineer` | design, ai-tools | Use v0.dev as brainstorm tool before coding UI |
+| `i18n-localization` | frontend, i18n | Internationalization, locale files, RTL support |
+| `project-context-template` | setup, onboarding | Bootstrap `.agent/context/` for new projects |
 
 ---
 
@@ -213,7 +216,7 @@ Your Project/
 │   ├── GEMINI.md               ← Agent identity (customize per project)
 │   ├── hooks.json              ← AI-triggered safety hooks
 │   ├── agents/                 ← 22 specialized agents
-│   ├── skills/                 ← 19 skill modules
+│   ├── skills/                 ← 22 skill modules
 │   ├── rules/                  ← 19 auto-triggered rules
 │   ├── workflows/              ← 28 slash-command workflows
 │   └── .shared/                ← 17 shared knowledge modules

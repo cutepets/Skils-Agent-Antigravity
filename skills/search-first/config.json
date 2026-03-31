@@ -1,0 +1,7 @@
+{
+  "name": "search-first",
+  "description": "Research-before-coding workflow — forces AI to read and understand codebase before writing",
+  "tags": ["workflow", "research", "safety"],
+  "trigger_keywords": ["before coding", "understand codebase", "read first", "research", "existing pattern"],
+  "priority": 10
+}

@@ -1,0 +1,7 @@
+{
+  "name": "nestjs-clean-arch",
+  "description": "NestJS clean architecture — modules, services, controllers, DTOs, guards, Prisma integration",
+  "tags": ["backend", "nestjs", "architecture", "typescript"],
+  "trigger_keywords": ["nestjs", "nest.js", "module", "controller", "service", "guard", "interceptor", "dto"],
+  "priority": 8
+}

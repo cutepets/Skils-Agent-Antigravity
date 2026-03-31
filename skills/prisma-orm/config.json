@@ -1,0 +1,7 @@
+{
+  "name": "prisma-orm",
+  "description": "Prisma ORM best practices — schema design, migrations, query optimization, N+1 prevention, transactions",
+  "tags": ["backend", "database", "prisma", "postgres", "orm"],
+  "trigger_keywords": ["prisma", "orm", "schema", "query", "transaction", "n+1", "seed", "migration"],
+  "priority": 8
+}

@@ -1,0 +1,7 @@
+{
+  "name": "api-documenter",
+  "description": "OpenAPI 3.1 documentation with Swagger UI, SDK generation, and developer portal",
+  "tags": ["backend", "docs", "api"],
+  "trigger_keywords": ["api docs", "openapi", "swagger", "document api", "api reference"],
+  "priority": 6
+}

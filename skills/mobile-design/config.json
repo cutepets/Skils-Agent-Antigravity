@@ -1,0 +1,7 @@
+{
+  "name": "mobile-design",
+  "description": "Mobile-first design for iOS/Android: touch targets, platform conventions, performance patterns",
+  "tags": ["mobile", "design", "react-native", "ios", "android"],
+  "trigger_keywords": ["mobile", "ios", "android", "react native", "flutter", "expo", "touch"],
+  "priority": 5
+}

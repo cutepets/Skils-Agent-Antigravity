@@ -1,0 +1,7 @@
+{
+  "name": "tailwind-patterns",
+  "description": "Tailwind CSS v4 principles: CSS-first config, container queries, design token architecture",
+  "tags": ["frontend", "css", "tailwind"],
+  "trigger_keywords": ["tailwind", "tailwindcss", "css utility", "responsive design", "css variables"],
+  "priority": 5
+}

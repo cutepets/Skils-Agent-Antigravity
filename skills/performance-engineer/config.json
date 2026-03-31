@@ -1,0 +1,7 @@
+{
+  "name": "performance-engineer",
+  "description": "OpenTelemetry, distributed tracing, load testing, Core Web Vitals, multi-tier caching",
+  "tags": ["performance", "monitoring", "observability", "devops"],
+  "trigger_keywords": ["performance", "slow", "optimize", "lighthouse", "core web vitals", "profiling", "bottleneck"],
+  "priority": 7
+}

@@ -1,0 +1,7 @@
+{
+  "name": "i18n-localization",
+  "description": "Internationalization patterns: hardcoded string detection, locale files, RTL support",
+  "tags": ["frontend", "i18n", "localization"],
+  "trigger_keywords": ["i18n", "translation", "locale", "multilingual", "rtl", "internationalization"],
+  "priority": 4
+}

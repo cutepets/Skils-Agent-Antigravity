@@ -1,0 +1,7 @@
+{
+  "name": "security-scan",
+  "description": "AgentShield scan + manual checklist for AI agent configs, hooks, MCP, and prompt injection risks",
+  "tags": ["security", "devops", "ai-safety"],
+  "trigger_keywords": ["security scan", "agentshield", "audit config", "prompt injection", "security check"],
+  "priority": 8
+}

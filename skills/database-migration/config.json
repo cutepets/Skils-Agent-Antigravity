@@ -1,0 +1,7 @@
+{
+  "name": "database-migration",
+  "description": "Zero-downtime DB migrations, schema design, Prisma/SQL patterns, rollback strategies",
+  "tags": ["backend", "database", "prisma", "postgres"],
+  "trigger_keywords": ["migration", "schema change", "prisma", "database", "seed", "postgres", "alter table"],
+  "priority": 7
+}

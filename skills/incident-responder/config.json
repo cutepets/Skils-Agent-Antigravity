@@ -1,0 +1,7 @@
+{
+  "name": "incident-responder",
+  "description": "SRE incident command, rapid problem resolution, blameless post-mortems, error budget",
+  "tags": ["devops", "sre", "monitoring", "reliability"],
+  "trigger_keywords": ["incident", "outage", "production down", "service degraded", "rollback", "on-call"],
+  "priority": 6
+}

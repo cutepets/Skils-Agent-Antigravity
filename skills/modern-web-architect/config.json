@@ -1,0 +1,7 @@
+{
+  "name": "modern-web-architect",
+  "description": "React 19, Next.js 15, App Router, state management, FFCI/DFII evaluation frameworks",
+  "tags": ["frontend", "architecture", "react", "nextjs"],
+  "trigger_keywords": ["architecture", "react", "next.js", "state management", "app router", "spa", "vite"],
+  "priority": 8
+}

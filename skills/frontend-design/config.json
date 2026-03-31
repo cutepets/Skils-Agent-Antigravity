@@ -1,0 +1,7 @@
+{
+  "name": "frontend-design",
+  "description": "Design thinking for web UI: color, typography, layout, UX psychology, animation principles",
+  "tags": ["design", "frontend", "ux", "ui"],
+  "trigger_keywords": ["design system", "color palette", "typography", "layout", "ux", "visual", "aesthetic"],
+  "priority": 7
+}

@@ -1,0 +1,7 @@
+{
+  "name": "deployment-engineer",
+  "description": "CI/CD pipelines, Docker, Kubernetes, GitOps, progressive delivery (Canary/Blue-Green)",
+  "tags": ["devops", "cloud", "ci-cd", "docker"],
+  "trigger_keywords": ["deploy", "ci/cd", "docker", "kubernetes", "k8s", "github actions", "pipeline", "release"],
+  "priority": 7
+}
