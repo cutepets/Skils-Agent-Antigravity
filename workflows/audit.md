@@ -109,14 +109,19 @@ npm run build
 
 ---
 
-## 🛍️ Phase 6: POS/Petshop-Specific Gates
+## 🛍️ Phase 6: Project-Specific Gates
 
-- [ ] Currency formatted correctly: `123.456 ₫` (dấu chấm, không phải phẩy)
+> Add your domain-specific checks here. Examples:
+
+- [ ] Currency/number formatting correct for project locale
 - [ ] Tables have sticky header + pagination footer
-- [ ] Search inputs have `autoComplete="off"`
+- [ ] Search inputs disable browser autocomplete where needed
 - [ ] Modal forms: auto-focus first field on open
-- [ ] Status badges use correct color mapping (pending/confirmed/completed/cancelled)
+- [ ] Status badges use correct color mapping for domain states
 - [ ] API calls include auth token in headers
+- [ ] Core domain state machine flow (e.g., `PENDING → PAID → COMPLETE`) still valid
+
+> 💡 Customize this checklist per project in `.agent/context/audit-gates.md`
 
 ---
 
@@ -136,5 +141,5 @@ Generate `AUDIT_REPORT.md` at project root with:
 /audit          # Run all checks
 /audit security # Phase 1 + 4 only
 /audit frontend # Phase 2 + 3 + 5 only
-/audit pos      # Phase 6 (Petshop-specific) only
+/audit domain   # Phase 6 (project-specific) only
 ```

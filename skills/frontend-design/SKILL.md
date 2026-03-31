@@ -81,7 +81,7 @@ Before any design work, set these dials based on context. **Ask user if unclear.
 | **MOTION_INTENSITY** | 1 = Static → 10 = Cinematic | 4 |
 | **VISUAL_DENSITY** | 1 = Airy/Sparse → 10 = Dense/Packed | 5 |
 
-**Auto-set for Petshop POS context:**
+**Example — B2B/POS context (dense, professional):**
 ```
 DESIGN_VARIANCE  = 3  (professional, consistent)
 MOTION_INTENSITY = 2  (functional, non-distracting)
@@ -482,29 +482,29 @@ After implementing your design, run the audit:
 
 ---
 
-## 🏪 POS/ERP Design Context — Petshop Project
+## 🏪 B2B/POS Design Context
 
 > Apply these **on top of** the general principles above. POS is B2B software — different from consumer apps.
 
 ### Audience Profile
 | Factor | Value |
 |--------|-------|
-| **User** | Nhân viên thu ngân, nhân viên kho, quản lý |
-| **Usage Pattern** | 8h/ngày, lặp đi lặp lại, tốc độ là ưu tiên |
-| **Device** | Desktop/laptop (1280px+), có thể tablet |
-| **Lighting** | Thường trong nhà, đủ ánh sáng |
+| **User** | Staff (cashier, warehouse, manager) — uses it 8h/day |
+| **Usage Pattern** | Repetitive, speed-optimized, keyboard-heavy |
+| **Device** | Desktop/laptop (1280px+), occasionally tablet |
+| **Lighting** | Indoor, consistent lighting |
 
 → **Design Direction**: Professional, efficient, high information density, fast interactions. **NOT** consumer-app aesthetics.
 
-### Petshop Color System (Current)
+### Color System Guidance
 ```css
-/* HSL CSS Variables đang dùng */
---primary-500: hsl(213, 90%, 52%)    /* Xanh dương chính */
+/* Recommend HSL CSS variables for maintainable theming */
+--primary-500: hsl(213, 90%, 52%)    /* Brand primary */
 --primary-600: hsl(213, 90%, 44%)    /* Hover state */
 --background: hsl(0, 0%, 100%)       /* Light bg */
 --background-secondary: hsl(220, 14%, 96%)
---foreground: hsl(222, 47%, 11%)     /* Text chính */
---foreground-muted: hsl(215, 25%, 45%) /* Text phụ */
+--foreground: hsl(222, 47%, 11%)     /* Body text */
+--foreground-muted: hsl(215, 25%, 45%) /* Secondary text */
 --border: hsl(220, 13%, 91%)
 --success: hsl(142, 70%, 45%)
 --warning: hsl(38, 92%, 50%)
@@ -520,7 +520,7 @@ After implementing your design, run the audit:
 - Sort indicators: visible always
 - Sticky header + footer pagination
 
-**Forms (Add Product, New Order):**
+**Forms:**
 - Modal overlay — NOT inline (prevents clipping)
 - Label above input (not floating — faster scanning)
 - Tab key navigation between fields
@@ -528,44 +528,42 @@ After implementing your design, run the audit:
 - Disabled submit until required fields filled
 
 **Search & Filter:**
-- Search: debounce 300ms, KHÔNG lưu browser autocomplete (`autoComplete="off"`)
+- Search: debounce 300ms, disable browser autocomplete
 - Filter chips: always visible above table
 - Clear all filters: 1 click
 
 **Status Badges:**
-```tsx
-// Color mapping cho order status
+```
 pending   → yellow-100/800
 confirmed → blue-100/800
 completed → green-100/800
 cancelled → red-100/800
 ```
 
-**Number Formatting (POS Vietnam):**
-- Giá: `123.456.789 ₫` (dấu chấm ngăn cách hàng nghìn)
-- Không dùng `Intl.NumberFormat` mà format thủ công dấu `.` (VND convention)
+**Number Formatting:**
+- Use locale-aware formatting appropriate to project region
 
-### Layout Patterns cho Từng Page
+### Common Page Layout Patterns
 
-| Page | Layout | Key Area |
-|------|---------|----------|
-| **NewOrderPage** | Left (sản phẩm) / Right (giỏ + thanh toán) ~60/40 | Giỏ hàng luôn visible |
-| **InventoryPage** | Full width table + filter sidebar | Bảng là trung tâm |
-| **CustomerPage** | List panel (40%) + Detail panel (60%) | Master/detail split |
-| **Dashboard** | Stats cards top + Charts bottom | KPI nổi bật |
+| Page Type | Layout | Key Area |
+|-----------|---------|----------|
+| **POS/Checkout** | Left (products) / Right (cart) ~60/40 | Cart always visible |
+| **Inventory** | Full width table + filter sidebar | Table is center |
+| **Master/Detail** | List panel (40%) + Detail panel (60%) | Detail updates on select |
+| **Dashboard** | Stats cards top + Charts bottom | KPIs prominent |
 
-### Animation Guidelines for POS
-- Modal open/close: `duration-200`, `ease-out` — nhanh, không fancy
-- Dropdown: `duration-150` — tức thì
-- Table row hover: `duration-100` — instant feel
+### Animation Guidelines for B2B/POS
+- Modal open/close: `duration-200`, `ease-out` — fast, no fancy effects
+- Dropdown: `duration-150` — instant feel
+- Row hover: `duration-100`
 - Toast notifications: `duration-300` slide in, `duration-200` slide out
-- **KHÔNG** dùng bounce, flip, hay rotation — professional context
+- **AVOID** bounce, flip, rotation — professional context
 
-### Accessibility for POS
+### Accessibility for Staff UIs
 - All interactive elements: keyboard navigable
-- Focus ring: visible và rõ (không ẩn đi)
-- Icon buttons: có `title` hoặc `aria-label`
-- Error messages: inline, không chỉ màu đỏ (dùng cả icon)
+- Focus ring: visible (never hidden)
+- Icon buttons: `title` or `aria-label`
+- Error messages: inline, use both icon AND color (not color-only)
 
 ---
 

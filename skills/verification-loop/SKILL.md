@@ -3,17 +3,17 @@ name: verification-loop
 description: >
   Continuous verification workflow sau khi hoàn thành feature hoặc fix lớn.
   Chạy một chuỗi kiểm tra có hệ thống để đảm bảo không tạo regression.
-  Đặc biệt cần sau khi sửa POS workflow, payment logic, hoặc database changes.
+  Đặc biệt cần sau khi thay đổi business logic, payment flows, hoặc database schema.
 ---
 
-# Verification Loop — Petshop Service Management
+# Verification Loop — Post-Change Regression Prevention
 
 ## Khi Nào Dùng Skill Này
 
 Kích hoạt sau khi:
 - Hoàn thành feature mới (>3 files thay đổi)
-- Fix bug phức tạp trong POS/Payment flow
-- Thay đổi Prisma schema
+- Fix bug phức tạp trong business/payment flow
+- Thay đổi database schema
 - Sửa API endpoints
 - Refactor component lớn
 
@@ -21,11 +21,12 @@ Kích hoạt sau khi:
 
 ### Bước 1: TypeScript Compile Check
 ```bash
-# Frontend
-cd apps/frontend && npx tsc --noEmit --skipLibCheck 2>&1 | head -30
+# Chạy từ root project hoặc từng package
+npx tsc --noEmit --skipLibCheck 2>&1 | head -30
 
-# Backend  
-cd apps/backend && npx tsc --noEmit --skipLibCheck 2>&1 | head -30
+# Monorepo (thay đường dẫn phù hợp với project)
+# cd apps/frontend && npx tsc --noEmit --skipLibCheck 2>&1 | head -30
+# cd apps/backend && npx tsc --noEmit --skipLibCheck 2>&1 | head -30
 ```
 **Pass điều kiện:** 0 errors. Warnings OK nhưng cần ghi nhận.
 
@@ -33,12 +34,12 @@ cd apps/backend && npx tsc --noEmit --skipLibCheck 2>&1 | head -30
 
 ### Bước 2: Import/Export Consistency
 ```bash
-# Tìm broken imports
-grep -r "from '.*/.*'" apps/frontend/src/ --include="*.ts" --include="*.tsx" | \
+# Tìm broken imports (thay src/ bằng đường dẫn source của project)
+grep -r "from '.*/.*'" src/ --include="*.ts" --include="*.tsx" | \
   grep -v "node_modules" | head -20
 
 # Check re-exports
-grep -r "export \* from" apps/ --include="*.ts" -l
+grep -r "export \* from" src/ --include="*.ts" -l
 ```
 **Pass điều kiện:** Không có circular imports, không import từ file không tồn tại.
 
@@ -46,33 +47,32 @@ grep -r "export \* from" apps/ --include="*.ts" -l
 
 ### Bước 3: API Contract Check (Frontend ↔ Backend)
 ```bash
-# Frontend API calls
-grep -r "fetch\|axios\|api\." apps/frontend/src/ --include="*.ts" --include="*.tsx" | \
-  grep -E "'/api/|/orders|/payments|/pets" | head -20
+# Frontend API calls (thay đường dẫn và keyword phù hợp)
+grep -r "fetch\|axios\|api\." src/ --include="*.ts" --include="*.tsx" | \
+  grep -E "'/api/" | head -20
 
 # Backend routes
-grep -r "router\.(get|post|put|patch|delete)" apps/backend/src/routes/ | \
-  grep -E "/orders|/payments|/pets" | head -20
+grep -rE "(get|post|put|patch|delete)\(" src/ --include="*.ts" | \
+  grep "router\|app" | head -20
 ```
 **Pass điều kiện:** Endpoints frontend gọi phải tồn tại trong backend routes.
 
 ---
 
 ### Bước 4: Business Logic Spot Check
-Kiểm tra các điểm dễ regression nhất trong petshop:
+Kiểm tra các điểm dễ regression nhất trong project:
 
 ```
-□ Order status machine: PENDING → PAID → COMPLETE — flow còn đúng không?
-□ Payment.remainingBalance — tính đúng không sau khi thay đổi?
-□ Hotel booking dates — không overlap?
-□ Pet ownership — chỉ owner mới edit được?
+□ State machine chính của domain (ví dụ: order status flow) — còn đúng không?
+□ Tính toán quan trọng (ví dụ: balance, price, totals) — kết quả có thay đổi?
+□ Access control — chỉ đúng role/owner mới thực hiện được?
+□ Data integrity — foreign keys, unique constraints còn hợp lệ?
 ```
 
-**Cách verify:**
+**Cách verify (thay tên file/field phù hợp với project):**
 ```bash
-# Check order service logic
-grep -n "status\|paymentStatus\|remainingBalance" \
-  apps/backend/src/services/order.service.ts | head -30
+# Tìm logic liên quan đến domain chính
+grep -n "status\|balance\|total" src/services/main.service.ts | head -30
 ```
 
 ---
@@ -122,8 +122,8 @@ Sau khi chạy tất cả steps, output report này:
 
 Khi thay đổi nhỏ (1-2 files, không phải logic):
 ```bash
-# Chỉ cần pass bước này
-cd apps/frontend && npx tsc --noEmit --skipLibCheck 2>&1 | grep "error TS" | wc -l
+# Chỉ cần pass bước này (thay đường dẫn phù hợp)
+npx tsc --noEmit --skipLibCheck 2>&1 | grep "error TS" | wc -l
 # Kết quả = 0 → OK
 ```
 

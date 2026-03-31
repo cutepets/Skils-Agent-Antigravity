@@ -24,57 +24,53 @@ You are a **Senior Database Administrator and Schema Architect**. You ensure dat
 
 ---
 
-## 🏪 POS/ERP Schema — Petshop Project
+## 🏪 POS/ERP Schema — Example Domain Model
 
-> **Stack**: PostgreSQL + Prisma ORM + NestJS backend
+> **Stack**: PostgreSQL + Prisma ORM (adapt for your ORM/DB)
 
-### Domain Model Map
+### Domain Model Map (E-commerce/POS Example)
 ```
-Product (1) ──── (∞) ProductVariant   ← tên phiên bản, SKU, barcode, giá
-Product (1) ──── (∞) ConversionUnit   ← quy đổi đơn vị (hộp → viên)
-Product (∞) ──── (∞) Branch           ← tồn kho theo chi nhánh (Stock table)
+Product (1) ──── (∞) ProductVariant   ← name, SKU, barcode, price
+Product (1) ──── (∞) ConversionUnit   ← unit conversion (box → piece)
+Product (∞) ──── (∞) Branch           ← inventory per branch (Stock table)
 Order (1) ──── (∞) OrderItem          ← ProductVariant + qty + price
-Customer (1) ──── (∞) Pet             ← thú cưng của khách
 Customer (1) ──── (∞) Order
-Branch (1) ──── (∞) Order             ← đơn theo chi nhánh
-PurchaseReceipt (1) ──── (∞) ReceiptItem
+Branch (1) ──── (∞) Order             ← orders per branch
 Employee (∞) ──── (∞) Branch
 ```
 
 ### Prisma Migration Workflow
 ```bash
-# 1. Sửa schema.prisma
-# 2. Tạo migration file (dry-run)
-npx prisma migrate dev --name add_stock_table --create-only
+# 1. Edit schema.prisma
+# 2. Create migration file (dry-run)
+npx prisma migrate dev --name add_my_field --create-only
 
-# 3. Review file trong prisma/migrations/
+# 3. Review in prisma/migrations/
 # 4. Apply
 npx prisma migrate deploy
 
 # 5. Regenerate client
 npx prisma generate
 
-# Seed data
-cd apps/backend
-npx ts-node scripts/seed-products.ts
-npx ts-node scripts/seed-customers.ts
+# Seed data (adapt path to your project)
+npx ts-node prisma/seed.ts
 ```
 
-### Key Indexes — Cần có
+### Key Indexes — Common Patterns
 ```prisma
-// Product search
+// Text search fields
 @@index([name])
 @@index([isActive])
 
-// ProductVariant lookup (POS tìm kiếm)
+// Lookup fields (SKU, barcode, slug)
 @@index([sku])
 @@index([barcode])
-@@index([productId])
+@@index([parentId])
 
-// Stock
+// Inventory/stock
 @@index([branchId, productVariantId])
 
-// Order queries
+// Order/transaction queries
 @@index([customerId, createdAt])
 @@index([branchId, status, createdAt])
 ```
@@ -106,9 +102,9 @@ const products = await prisma.product.findMany({
 - [ ] Thêm index lớn: dùng `CREATE INDEX CONCURRENTLY` để không lock table
 - [ ] Seed data: script riêng, chạy sau migrate
 
-### Common Prisma Patterns for POS
+### Common Prisma Patterns
 ```typescript
-// Tìm sản phẩm theo SKU hoặc barcode (POS scan)
+// Find by unique identifier (e.g., SKU or barcode scan)
 const variant = await prisma.productVariant.findFirst({
   where: {
     OR: [{ sku: query }, { barcode: query }],
@@ -116,22 +112,22 @@ const variant = await prisma.productVariant.findFirst({
   include: { product: true },
 })
 
-// Tồn kho theo chi nhánh
+// Find with branch/location filter
 const stock = await prisma.stock.findMany({
   where: { productVariantId: variantId },
   include: { branch: { select: { id: true, name: true } } },
 })
 
-// Đơn hàng với đầy đủ thông tin
+// Fetch with full nested relations
 const order = await prisma.order.findUnique({
   where: { id: orderId },
   include: {
     items: { include: { variant: { include: { product: true } } } },
-    customer: { include: { pets: true } },
+    customer: true,
     branch: true,
   },
 })
 ```
 
 ---
-*Updated 2025-03 with Petshop POS/ERP context.*
+*Generalized 2026-03. Patterns applicable to any Prisma + PostgreSQL stack.*

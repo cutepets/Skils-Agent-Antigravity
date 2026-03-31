@@ -34,7 +34,7 @@ Before coding, calculate the **Frontend Feasibility & Complexity Index (FFCI)**:
 
 ## 2. React 19 & Next.js 15 Patterns
 
-> ⚠️ **POS/Petshop Project**: Skip this entire section. Dự án dùng **Vite SPA + React Router**, không có Next.js/SSR/RSC. Xem **[Section 6](#6-poserp-specific-patterns)** để thay thế.
+> ⚠️ **Vite SPA Projects**: Skip RSC/App Router section. For Vite + React Router projects, see **[Section 6](#6-poserp-specific-patterns)** for applicable patterns instead.
 
 - **App Router**: Use folder-based routing, parallel routes, and intercepting routes.
 - **Server Components (RSC)**: Default to Server Components for data fetching. Use `'use client'` only for interactivity.
@@ -78,21 +78,21 @@ Evaluate via **Design Feasibility & Impact Index (DFII)**:
 
 ## 6. 🏪 POS/ERP Specific Patterns
 
-> **Project Context**: `Petshop_Service_Management` — Vite + React + TypeScript monorepo. Backend: NestJS + Prisma + PostgreSQL. **No SSR, no Next.js — SPA only.**
+> **Context**: Vite + React + TypeScript SPA (e.g., monorepo with frontend + backend). No SSR, no Next.js — SPA only.
 
 ### Stack Reality Check
-| Concept | Generic Advice | POS Project Reality |
+| Concept | Generic Advice | SPA Project Reality |
 |---------|---------------|---------------------|
 | App Router | Next.js App Router | React Router v6 (Vite) |
 | RSC | Server Components | None — SPA only |
 | ISR/PPR | Next.js features | N/A — use TanStack Query cache |
 | Global State | Zustand | TanStack Query + local useState |
 
-### Monorepo Structure
+### Monorepo Structure (Example)
 ```
 apps/
 ├── frontend/    ← Vite + React (port 5173)
-└── backend/     ← NestJS (port 3000)
+└── backend/     ← API server (port 3000)
 packages/
 └── shared/      ← shared types/utils
 ```
@@ -144,10 +144,9 @@ Context:
 ```
 
 ### Component Refactor Priorities
-- **InventoryPage.tsx** (2600+ lines) → Extract: `ProductTable`, `ProductFormModal`, `ServiceTable`
-- **NewOrderPage.tsx** → Extract: `CartRow`, `CustomerSelect`, `PaymentPanel`
-- **Large tables** → Add `@tanstack/react-virtual` for 100+ rows
-- **Forms** → `react-hook-form` + Zod instead of manual `useState` per field
+- **Large pages (2000+ lines)** → Extract into focused sub-components
+- **Heavy tables (100+ rows)** → Add `@tanstack/react-virtual` for virtualization
+- **Complex forms** → `react-hook-form` + Zod instead of manual `useState` per field
 
 ---
-*Merged from 11 legacy skills. POS section added 2025-03.*
+*Merged from 11 legacy skills. Generalized 2026-03.*

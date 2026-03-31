@@ -62,33 +62,43 @@ git show HEAD~1 -- apps/backend/src/services/order.service.ts
 Trước khi sửa hàm/component, hiểu ai đang dùng nó:
 
 ```bash
-# Ai import/dùng hook này?
-grep -r "usePOSOrder" apps/ --include="*.tsx" --include="*.ts"
+# Ai import/dùng hook này? (thay useMyHook bằng tên thực)
+grep -r "useMyHook" src/ --include="*.tsx" --include="*.ts"
 
-# Ai gọi API endpoint này?
-grep -r "completeOrder\|/orders/complete" apps/ --include="*.ts"
+# Ai gọi API endpoint này? (thay /my-endpoint bằng route thực)
+grep -r "myFunction\|/my-endpoint" src/ --include="*.ts"
 ```
 
-## Petshop-Specific Search Patterns
+## Generic Search Patterns
 
-### Khi liên quan đến POS/Order
+### Khi liên quan đến state/business logic
 ```bash
-grep -r "remainingBalance\|existingPaymentStatus\|orderStatus" apps/ --include="*.tsx"
-grep -r "usePOSOrder" apps/frontend/src/ -l
-grep -r "paymentStatus.*PAID\|status.*COMPLETE" apps/ --include="*.ts"
+# Tìm field/state đang dùng trong codebase
+grep -r "myField\|myStatus" src/ --include="*.tsx" --include="*.ts"
+
+# Tìm hook được dùng ở đâu
+grep -r "useMyFeature" src/ -l
 ```
 
-### Khi liên quan đến API
+### Khi liên quan đến API routes
 ```bash
-grep -r "router\.(get|post|put|patch|delete)" apps/backend/src/routes/ -n
-grep -r "prisma\.\w*\.(findMany\|findUnique\|create\|update)" apps/backend/src/ -l
+# Tìm route definitions
+grep -rE "(get|post|put|patch|delete)\(" src/ --include="*.ts" | grep "router"
+
+# Tìm ORM/DB queries
+grep -r "findMany\|findUnique\|create\|update" src/ --include="*.ts" -l
 ```
 
 ### Khi liên quan đến UI Components
 ```bash
-find apps/frontend/src/components/ -name "*.tsx" | head -20
-grep -r "import.*from.*components" apps/frontend/src/pages/ -l
+# Liệt kê components
+find src/components/ -name "*.tsx" | head -20
+
+# Ai dùng component này?
+grep -r "import.*MyComponent" src/ -l
 ```
+
+> 💡 **Tip**: Thay `src/` bằng đúng folder của project (ví dụ `apps/frontend/src/`, `lib/`, `app/`).
 
 ## Checklist Trước Khi Code
 
@@ -104,6 +114,6 @@ grep -r "import.*from.*components" apps/frontend/src/pages/ -l
 ## Red Flags — Dừng Lại Nếu
 
 - Chưa đọc file cần sửa nhưng đã gợi ý code
-- Task liên quan Order/Payment nhưng chưa đọc usePOSOrder.ts
+- Task liên quan business logic nhưng chưa đọc core hook/service chính
 - Sửa API nhưng chưa check frontend đang gọi gì
-- Thêm Prisma field nhưng chưa đọc schema.prisma
+- Thêm DB field nhưng chưa đọc schema/model hiện tại

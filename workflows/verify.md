@@ -22,25 +22,23 @@ Ghi nhận số lượng errors. Nếu có → list và classify (blocking/warni
 ## Bước 2: API Contract Spot Check
 
 Xác minh endpoints frontend đang gọi khớp với backend routes:
-- Xem `apps/frontend/src/` tìm `fetch(` hoặc API calls
-- So sánh với `apps/backend/src/routes/`
+- Tìm API calls trong frontend source
+- So sánh với backend route definitions
 - Báo cáo nếu có mismatch
 
 ## Bước 3: Business Logic Check
 
-Kiểm tra các flow critical của Petshop:
+Kiểm tra các flow critical của project:
 
-1. **Order flow:** `PENDING → PAID → COMPLETE` còn hoạt động đúng không?
-2. **Payment:** `remainingBalance` tính đúng không?
+1. **Core state machine:** Domain flow chính còn hoạt động đúng không?
+2. **Key calculations:** Các tính toán quan trọng (balance, total, quota...) còn chính xác?
 3. **File bị sửa:** Logic core có bị affect không?
 
 ## Bước 4: Server Health Check
 
 ```bash
-# Backend health
-curl -s http://localhost:3001/health 2>/dev/null || echo "Backend not responding"
-
-# Frontend
+# Thay port phù hợp với project
+curl -s http://localhost:3000/health 2>/dev/null || echo "Backend not responding"
 curl -s -o /dev/null -w "%{http_code}" http://localhost:5173 2>/dev/null
 ```
 
@@ -48,7 +46,7 @@ curl -s -o /dev/null -w "%{http_code}" http://localhost:5173 2>/dev/null
 
 ```bash
 git diff --stat HEAD
-git diff HEAD -- apps/ | grep "^+" | grep -E "console\.log|TODO|FIXME|debugger" | head -10
+git diff HEAD | grep "^+" | grep -E "console\.log|TODO|FIXME|debugger" | head -10
 ```
 
 Cảnh báo nếu có `console.log`, `TODO`, `debugger` trong staged changes.
@@ -84,4 +82,4 @@ Sau khi chạy xong, trình bày:
 ---
 
 > Skill liên quan: `verification-loop` trong `.agent/skills/`
-> Dùng sau mỗi: feature lớn, POS fix, schema migration, API changes
+> Dùng sau mỗi: feature lớn, critical fix, schema migration, API changes

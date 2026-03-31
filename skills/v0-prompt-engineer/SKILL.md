@@ -85,10 +85,10 @@ Sau khi hài lòng với giao diện preview trên v0, **hãy tổng hợp lại
 Paste Super Prompt vào Antigravity kèm context cụ thể:
 
 ```
-Implement this UI component for our Petshop POS project.
+Implement this UI component for our [Project Name].
 
-Tech stack: Vite + React + TypeScript + Vanilla CSS (CSS variables)
-File to edit: src/pages/NewOrderPage.tsx
+Tech stack: [Vite + React + TypeScript / Next.js / etc.] + [CSS framework]
+File to edit: [path/to/TargetComponent.tsx]
 Existing patterns: [mô tả patterns đang dùng trong project]
 
 [Paste Super Prompt vào đây]
