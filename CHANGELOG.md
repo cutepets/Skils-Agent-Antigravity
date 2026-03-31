@@ -7,6 +7,33 @@ Toàn bộ lịch sử thay đổi của bundle theo chuẩn [Semantic Versionin
 
 ---
 
+## [v1.4.0] — 2026-03-31
+
+### 🔧 Fixes (addressing 5 flagged risks)
+
+**#1 Vendor lock-in documentation:**
+- README: thêm section "Portability & Known Trade-offs" — bảng rõ ràng phần nào locked vs portable
+- Result: người dùng biết scope của dependency trước khi adopt
+
+**#2 Context window best practices:**
+- README: thêm section "Context Window Best Practices" với do/don't và priority guide
+- GEMINI.md model config: document alias `MODEL_SMART` / `MODEL_FAST`
+
+**#3 Agent-to-agent communication clarity:**
+- `orchestrator.md`: thêm disclaimer rõ ràng — "sequential prompting, not true parallel execution"
+- Align expectation với thực tế ngành (LangGraph, CrewAI, AutoGen đều sequential)
+
+**#4 Model hardcode fix:**
+- `GEMINI.md`: thêm Model Configuration table với aliases `MODEL_SMART`/`MODEL_FAST`
+- `database-reviewer.md` + `typescript-reviewer.md`: annotate `model: haiku` với comment trỏ về GEMINI.md
+- Từ nay chỉ cần update 1 file (GEMINI.md) khi model name đổi
+
+**#5 Cross-platform installer:**
+- Tạo `install.sh` (bash) cho Linux/macOS — feature-parity với `install.ps1`
+- README: ghi rõ cả 2 installer options
+
+---
+
 ## [v1.3.0] — 2026-03-31
 
 ### 📖 Docs

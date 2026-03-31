@@ -1,6 +1,6 @@
 ---
 name: typescript-reviewer
-model: haiku
+model: haiku  # MODEL_FAST alias — update GEMINI.md to change, not here
 description: >
   TypeScript và React/TSX code reviewer chuyên sâu. Gọi agent này khi: review
   component lớn (>300 dòng), detect type errors phức tạp, kiểm tra React patterns,

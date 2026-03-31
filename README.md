@@ -3,7 +3,7 @@
 > A production-grade AI agent configuration bundle for **Antigravity IDE**.
 > Battle-tested through real-world projects. Drop into any new project and start coding immediately.
 
-![Version](https://img.shields.io/badge/version-v1.3.0-orange)
+![Version](https://img.shields.io/badge/version-v1.4.0-orange)
 ![AgentShield Grade A](https://img.shields.io/badge/AgentShield-Grade%20A%20(96%2F100)-brightgreen)
 ![Agents](https://img.shields.io/badge/Agents-22-blue)
 ![Skills](https://img.shields.io/badge/Skills-22-blue)
@@ -331,6 +331,55 @@ This creates 3 files under `.agent/context/`:
 
 ---
 
+## 🔌 Portability & Known Trade-offs
+
+### What's Antigravity-specific (locked)
+
+| Component | Locked to | Notes |
+|-----------|-----------|-------|
+| `hooks.json` | Antigravity IDE hook system | Not portable — would need rewrite for other IDEs |
+| Rule auto-triggers (`trigger: *.tsx`) | Antigravity rule loading | Pattern varies per IDE |
+| `/skill`, `/workflow` slash commands | Antigravity command palette | |
+
+### What's fully portable (generic markdown)
+
+| Component | Portable? | Notes |
+|-----------|-----------|-------|
+| `skills/*/SKILL.md` | ✅ Yes | Plain markdown — any AI can read it |
+| `agents/*.md` | ✅ Yes | Frontmatter varies per IDE, body is portable |
+| `workflows/*.md` | ✅ Yes | Step-by-step instructions, IDE-agnostic |
+| `skills/*/config.json` | ✅ Yes | Metadata for discovery |
+| `CHANGELOG.md` | ✅ Yes | |
+
+> **Summary:** SKILL.md knowledge is 100% portable. If you switch IDEs, only `hooks.json` and trigger patterns need rewriting. Plan 2–4 hours for migration.
+
+---
+
+## ⚡ Context Window Best Practices
+
+With 22 skills + 19 rules + 28 workflows, context can grow large. Follow these practices:
+
+### ✅ Do
+- Let rules auto-trigger naturally — Antigravity only loads rules that **match** the current file, not all rules
+- Use `/skill [name]` explicitly only when needed — don't chain multiple skills per session
+- Keep `.agent/context/` files concise (< 200 lines each) — they load on every relevant session
+- Use `search-first` at the START of a session, not repeatedly
+
+### ❌ Avoid
+- Manually loading many skills in one prompt (`/skill A + /skill B + /skill C`)
+- Putting large data dumps in `.agent/context/` files (DB dumps, full API specs)
+- Running long orchestration chains without intermediate approval checkpoints
+
+### Priority guide (from config.json)
+```
+Priority 10-9 (Core)       → Always relevant, keep loaded: search-first, verification-loop
+Priority 8    (Important)  → Load when domain matches: nestjs, prisma, tanstack, tdd
+Priority 7-6  (Useful)     → Load on demand via /skill command
+Priority 5-4  (Specialty)  → Load only when specifically needed
+```
+
+---
+
 ## 🤝 Contributing
 
 This bundle grew from real production use. PRs welcome for:
@@ -338,6 +387,12 @@ This bundle grew from real production use. PRs welcome for:
 - Additional skill modules
 - Improved workflow templates
 - Bug fixes in rules
+
+When adding a skill:
+1. Create `skills/[name]/SKILL.md` + `config.json`
+2. Add to correct domain group in README Skills section
+3. Update `CHANGELOG.md` with new minor version
+4. Update Skills badge count in README
 
 ---
 

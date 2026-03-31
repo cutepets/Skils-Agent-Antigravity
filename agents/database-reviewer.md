@@ -1,6 +1,6 @@
 ---
 name: database-reviewer
-model: haiku
+model: haiku  # MODEL_FAST alias — update GEMINI.md to change, not here
 description: >
   Database schema, query, và migration reviewer. Gọi agent này khi: thêm/sửa
   Prisma/SQL schema, viết complex queries, tối ưu query performance, review
