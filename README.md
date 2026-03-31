@@ -6,7 +6,7 @@
 ![Version](https://img.shields.io/badge/version-v1.5.1-orange)
 ![AgentShield Grade A](https://img.shields.io/badge/AgentShield-Grade%20A%20(96%2F100)-brightgreen)
 ![Agents](https://img.shields.io/badge/Agents-22-blue)
-![Skills](https://img.shields.io/badge/Skills-24-blue)
+![Skills](https://img.shields.io/badge/Skills-25-blue)
 ![Workflows](https://img.shields.io/badge/Workflows-28-blue)
 ![Rules](https://img.shields.io/badge/Rules-19-blue)
 
@@ -36,7 +36,7 @@ Verified with [`ecc-agentshield`](https://www.npmjs.com/package/ecc-agentshield)
 | Component | Count | Description |
 |-----------|-------|-------------|
 | 🤖 Agents | **22** | Specialized AI personas for every task |
-| 🧩 Skills | **23** | Deep, reusable knowledge modules |
+| 🧩 Skills | **25** | Deep, reusable knowledge modules |
 | ⚡ Workflows | **28** | Slash-command workflows (`/create`, `/debug`, etc.) |
 | 📜 Rules | **19** | Auto-triggered coding standards |
 | 🪝 Hooks | **4** | AI-triggered safety hooks |
@@ -73,7 +73,7 @@ Verified with [`ecc-agentshield`](https://www.npmjs.com/package/ecc-agentshield)
 
 ---
 
-## 🧩 Skills (23)
+## 🧩 Skills (25)
 
 Skills are organized by **domain**. Each skill folder contains `SKILL.md` + `config.json` (metadata for auto-detection).
 
@@ -98,7 +98,9 @@ Skills are organized by **domain**. Each skill folder contains `SKILL.md` + `con
 |-------|----------|---------|
 | `nestjs-clean-arch` | ⭐⭐⭐⭐ 8 | Modules, controllers, DTOs, guards, interceptors, Prisma integration |
 | `prisma-orm` | ⭐⭐⭐⭐ 8 | Schema design, migration workflow, N+1 prevention, transactions |
+| `fastify-patterns` | ⭐⭐⭐⭐ 8 | Fastify v5 plugins, hooks, decorators, high-performance Node.js APIs |
 | `moleculer-patterns` | ⭐⭐⭐ 7 | Microservices patterns: Circuit Breaker, Event-driven, Service Broker, Fault Tolerance |
+| `medusa-commerce` | ⭐⭐⭐ 7 | Medusa.js modular commerce, durable workflows, headless architecture |
 | `database-migration` | ⭐⭐⭐ 7 | Zero-downtime migrations, rollback strategies, schema safety |
 | `api-documenter` | ⭐⭐⭐ 6 | OpenAPI 3.1, Swagger UI, SDK generation, developer portal |
 | `full-stack-scaffold` | ⭐⭐⭐ 6 | Project scaffolding for Node.js, Python, Rust, Mobile |
